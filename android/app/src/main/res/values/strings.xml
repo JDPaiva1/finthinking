@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">finthinking</string>
+    <string name="title_activity_main">finthinking</string>
+    <string name="package_name">dev.jdpaiva.finthinking</string>
+    <string name="custom_url_scheme">dev.jdpaiva.finthinking</string>
+</resources>
