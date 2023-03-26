@@ -1,7 +1,8 @@
-// eslint-disable-next-line no-undef
+/* eslint-env node */
+
 module.exports = {
   plugins: {
     tailwindcss: {},
-    autoprefixer: {},
-  },
+    autoprefixer: {}
+  }
 }

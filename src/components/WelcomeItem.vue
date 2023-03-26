@@ -22,7 +22,7 @@
 }
 
 i {
-  @apply flex place-items-center place-content-center w-8 h-8;
+  @apply flex items-center content-center w-8 h-8;
   color: var(--color-text);
 }
 

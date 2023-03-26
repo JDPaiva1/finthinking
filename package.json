@@ -1,7 +1,12 @@
 {
   "name": "finthinking",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": "Jose Daniel Paiva (https://jdpaiva.me/)",
   "private": true,
+  "engines": {
+    "node": "^18.13.0",
+    "npm": ">=9.4.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -16,6 +21,7 @@
     "@capacitor/cli": "^4.7.1",
     "@capacitor/core": "^4.7.1",
     "@capacitor/ios": "^4.7.1",
+    "firebase": "^9.18.0",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
