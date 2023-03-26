@@ -42,23 +42,4 @@ nav a {
 nav a:first-of-type {
   @apply border-0;
 }
-
-@media (min-width: 1024px) {
-  header {
-    @apply flex items-center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    @apply m-0 mr-8;
-  }
-
-  header.wrapper {
-    @apply flex items-start flex-wrap;
-  }
-
-  nav {
-    @apply text-left -ml-4 text-base pt-4 mt-4;
-  }
-}
 </style>

@@ -5,9 +5,4 @@
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    @apply min-h-screen flex items-center;
-  }
-}
 </style>
