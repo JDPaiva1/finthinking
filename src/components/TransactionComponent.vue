@@ -1,11 +1,8 @@
 <script setup lang="ts">
+import type { Transaction } from '@/interfaces/types'
+
 defineProps<{
-  transaction: {
-    category: string,
-    amount: number,
-    title: string,
-    date: string
-  },
+  transaction: Transaction,
 }>()
 </script>
 

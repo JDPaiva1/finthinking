@@ -1,20 +1,8 @@
 <script setup lang="ts">
 import TransactionComponent from '@/components/TransactionComponent.vue'
+import { useTransactionStore } from '@/stores/store'
 
-const transactions = {
-  $transaction_id: {
-    category: 'Entertainment',
-    amount: 30,
-    title: 'Cashback Offer',
-    date: 'Oct 30, 2021'
-  },
-  $transaction_id2: {
-    category: 'Transportation',
-    amount: -30,
-    title: 'Cheesy Pizza',
-    date: 'Oct 30, 2021'
-  }
-}
+const store = useTransactionStore()
 </script>
 
 <template>
@@ -22,7 +10,7 @@ const transactions = {
     <h3 class="recent-transactions-title">
       Recent Transaction
     </h3>
-    <template v-for="(transaction, index) in transactions" :key="index">
+    <template v-for="(transaction, index) in store.transactions" :key="index">
       <TransactionComponent :transaction="transaction"/>
     </template>
   </div>
