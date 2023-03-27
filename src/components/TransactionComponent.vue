@@ -16,7 +16,7 @@ defineProps<{
       <p :class="['transaction-amount', { 'expenses': transaction.amount < 0}]">
         € {{ transaction.amount }}
       </p>
-      <p class="text-xs">
+      <p class="transaction-category">
         {{ transaction.category }}
       </p>
       <p class="text-xs">
@@ -35,15 +35,18 @@ defineProps<{
   @apply h-14 w-16 bg-gray-500 rounded-2xl;
 }
 .transaction-text {
-  @apply w-full flex flex-wrap justify-between font-medium text-base;
+  @apply w-full flex flex-wrap justify-between items-center font-medium text-base;
 }
 .transaction-title {
   @apply w-4/5;
 }
 .transaction-amount {
-  @apply font-semibold grow-0 text-green-800;
+  @apply w-1/5 font-semibold text-green-800 text-end;
 }
 .transaction-amount.expenses {
   @apply text-red-800;
+}
+.transaction-category {
+  @apply text-xs;
 }
 </style>
