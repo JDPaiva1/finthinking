@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import type { Transaction } from '@/interfaces/types'
+import { computed } from 'vue';
 
-defineProps<{
+const props = defineProps<{
   transaction: Transaction,
 }>()
+
+// Format date
+const date = computed(() => (
+  new Date(props.transaction.date).toUTCString().substring(5,16)
+))
 </script>
 
 <template>
@@ -20,7 +26,7 @@ defineProps<{
         {{ transaction.category }}
       </p>
       <p class="text-xs">
-        {{ transaction.date }}
+        {{ date }}
       </p>
     </div>
   </div>
