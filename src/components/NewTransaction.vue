@@ -3,12 +3,21 @@ import { ref } from 'vue'
 import { useTransactionStore } from '@/stores/store'
 import type { Transaction } from '@/interfaces/types'
 
-const title = ref('')
-const amount = ref(0)
-const category = ref('')
-const date = ref('')
+const title = ref<string>()
+const amount = ref<number>()
+const category = ref<string>()
+const date = ref<string>()
 const showErrorMsg = ref(false)
 const store = useTransactionStore()
+
+function getFormData():Transaction {
+  return {
+    title: title.value || '',
+    amount: amount.value || 0,
+    category: category.value || '',
+    date: date.value || new Date().toJSON().split('T')[0]
+  }
+}
 
 function saveTransaction() {
   if(!(title.value || amount.value || category.value || date.value)) {
@@ -16,12 +25,7 @@ function saveTransaction() {
     return
   }
 
-  const newTransaction:Transaction = {
-    title: title.value,
-    amount: amount.value,
-    category: category.value,
-    date: date.value
-  }
+  const newTransaction:Transaction = getFormData();
 
   store.addTransaction(newTransaction)
 
