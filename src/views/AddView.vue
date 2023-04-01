@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import NewTransaction from '@/components/NewTransaction.vue';
+import TransactionForm from '@/components/TransactionForm.vue';
 </script>
 
 <template>
   <div class="new">
-    <NewTransaction />
+    <TransactionForm />
   </div>
 </template>

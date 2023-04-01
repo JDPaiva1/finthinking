@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useTransactionStore } from '@/stores/store'
 import type { Transaction } from '@/interfaces/types'
 
@@ -7,15 +8,19 @@ const title = ref<string>()
 const amount = ref<number>()
 const category = ref<string>()
 const date = ref<string>()
+
 const showErrorMsg = ref(false)
+const todayDate = ref(new Date().toJSON().split('T')[0])
+
 const store = useTransactionStore()
+const router = useRouter()
 
 function getFormData():Transaction {
   return {
     title: title.value || '',
     amount: amount.value || 0,
     category: category.value || '',
-    date: date.value || new Date().toJSON().split('T')[0]
+    date: date.value || todayDate.value
   }
 }
 
@@ -29,57 +34,68 @@ function saveTransaction() {
 
   store.addTransaction(newTransaction)
 
-  title.value = ''
-  amount.value = 0
-  category.value = ''
-  date.value = ''
+  router.push({name: 'home'})
 }
 </script>
 
 <template>
-  <div>
-    <div>
-      <label for="title">Title</label>
-      <input type="text" name="title" v-model="title"/>
+  <div class="t-form">
+    <div class="t-form-wrapper">
+      <label class="t-form-label" for="title">
+        Title
+      </label>
+      <input class="t-form-input" type="text" name="title" required v-model="title"/>
     </div>
-    <div>
-      <label for="amount">Amount</label>
-      <input type="number" name="amount" v-model="amount"/>
+    <div class="t-form-wrapper">
+      <label class="t-form-label" for="amount">
+        Amount
+      </label>
+      <input class="t-form-input" type="number" name="amount" required v-model="amount"/>
     </div>
-    <div>
-      <label for="category">Category</label>
-      <input type="text" name="category" v-model="category"/>
+    <div class="t-form-wrapper">
+      <label class="t-form-label" for="category">
+        Category
+      </label>
+      <select class="t-form-input" name="category">
+        <option v-for="(c, index) in store.categories" :key="index" :value="c">
+          {{ c }}
+        </option>
+      </select>
     </div>
-    <div for="date">
-      <label>Date</label>
-      <input type="date" name="date" v-model="date"/>
+    <div class="t-form-wrapper">
+      <label class="t-form-label" for="date">
+        Date
+      </label>
+      <input class="t-form-input" type="date" name="date" :max="todayDate" required v-model="date"/>
     </div>
     <p v-if="showErrorMsg" class="text-red-500">All fields are required</p>
-    <button @click="saveTransaction">Add Transaction</button>
+    <button class="t-form-btn" @click="saveTransaction">
+      Add Transaction
+    </button>
   </div>
 </template>
 
 <style scoped>
-form {
+.t-form {
   @apply px-2;
 }
-label, input {
+.t-form-label, .t-form-input {
   @apply w-full block py-2 mb-2 rounded-lg;
 }
-input {
+.t-form-input {
   @apply mt-2 px-0.5 border-0 border-b-2 focus:ring-0;
   background-color: var(--color-background-mute);
   border-color: var(--color-border);
 }
-input:focus {
+.t-form-input:focus {
   background-color: var(--color-background-soft);
   border-color: var(--color-border-hover);
 }
-button {
+.t-form-btn {
   @apply w-full p-4 mt-2 rounded-lg;
   background-color: var(--color-background-mute);
 }
-button:hover {
+.t-form-btn:hover {
   background-color: var(--color-background-soft);
 }
 </style>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import HomeDashboard from '@/components/HomeDashboard.vue'
-import RecentTransactions from '@/components/RecentTransactions.vue';
+import TransactionsList from '@/components/TransactionsList.vue';
 </script>
 
 <template>
   <main>
     <HomeDashboard />
-    <RecentTransactions />
+    <TransactionsList />
   </main>
 </template>
