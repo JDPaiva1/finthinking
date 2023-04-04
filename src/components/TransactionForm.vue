@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useTransactionStore } from '@/stores/store'
 import type { Transaction } from '@/interfaces/types'
 
@@ -14,6 +14,18 @@ const todayDate = ref(new Date().toJSON().split('T')[0])
 
 const store = useTransactionStore()
 const router = useRouter()
+const route = useRoute()
+
+if(route.params?.id) {
+  store.getTransaction(route.params.id).then((data:Transaction) => {
+    title.value = data.title
+    amount.value = data.amount
+    category.value = data.category
+    date.value = data.date
+  }).catch(error => {
+    error
+  })
+}
 
 function getFormData():Transaction {
   return {
@@ -32,7 +44,11 @@ function saveTransaction() {
 
   const newTransaction:Transaction = getFormData()
 
-  store.addTransaction(newTransaction)
+  if(route.params?.id) {
+    store.editTransaction(route.params.id, newTransaction)
+  } else {
+    store.addTransaction(newTransaction)
+  }
 
   router.push({name: 'home'})
 }
