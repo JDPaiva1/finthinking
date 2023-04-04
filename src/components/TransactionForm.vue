@@ -30,7 +30,7 @@ function saveTransaction() {
     return
   }
 
-  const newTransaction:Transaction = getFormData();
+  const newTransaction:Transaction = getFormData()
 
   store.addTransaction(newTransaction)
 
