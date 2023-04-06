@@ -79,7 +79,7 @@ function deleteTransaction() {
       <label class="t-form-label" for="category">
         Category
       </label>
-      <select class="t-form-input" name="category">
+      <select class="t-form-input" name="category" v-model="category">
         <option v-for="(c, index) in store.categories" :key="index" :value="c">
           {{ c }}
         </option>
@@ -93,7 +93,7 @@ function deleteTransaction() {
     </div>
     <p v-if="showErrorMsg" class="text-red-500">All fields are required</p>
     <button class="t-form-btn" @click="saveTransaction">
-      Add Transaction
+      {{ isEditForm ? 'Update Transaction' : 'Add Transaction' }}
     </button>
     <button v-if="isEditForm" class="t-form-btn text-red-500" @click="deleteTransaction">
       Delete Transaction
