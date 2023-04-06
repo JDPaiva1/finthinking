@@ -2,9 +2,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { auth } from '@/firebaseConfig'
-import { createUserWithEmailAndPassword } from 'firebase/auth' 
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import InputComponent from '@/components/atoms/InputComponent.vue'
 
-const name  = ref<string>()
+const name = ref<string>()
 const lastname = ref<string>()
 const email = ref<string>('')
 const pwd = ref()
@@ -27,30 +28,10 @@ function signup() {
 
 <template>
   <div class="signup-form">
-    <div class="signup-form-wrapper">
-      <label class="signup-form-label" for="name">
-        name
-      </label>
-      <input class="signup-form-input" type="text" name="name" required v-model="name"/>
-    </div>
-    <div class="signup-form-wrapper">
-      <label class="signup-form-label" for="lastname">
-        last name
-      </label>
-      <input class="signup-form-input" type="text" name="lastname" required v-model="lastname"/>
-    </div>
-    <div class="signup-form-wrapper">
-      <label class="signup-form-label" for="email">
-        email
-      </label>
-      <input class="signup-form-input" type="email" name="email" required v-model="email"/>
-    </div>
-    <div class="signup-form-wrapper">
-      <label class="signup-form-label" for="password">
-        password
-      </label>
-      <input class="signup-form-input" type="password" name="password" required v-model="pwd"/>
-    </div>
+    <InputComponent :label="'name'" :type="'text'" :name="'name'" required v-model:value="name" />
+    <InputComponent :label="'lastname'" :type="'text'" :name="'lastname'" required v-model:value="lastname" />
+    <InputComponent :label="'email'" :type="'email'" :name="'email'" required v-model:value="email" />
+    <InputComponent :label="'password'" :type="'password'" :name="'password'" required v-model:value="pwd" />
     <p v-if="showErrorMsg" class="text-red-500">All fields are required</p>
     <button class="signup-form-btn" @click="signup">
       signup
@@ -65,25 +46,32 @@ function signup() {
 .signup-form {
   @apply px-2;
 }
-.signup-form-label, .signup-form-input {
+
+.signup-form-label,
+.signup-form-input {
   @apply w-full block py-2 mb-2 rounded-lg;
 }
+
 .signup-form-label {
   @apply capitalize;
 }
+
 .signup-form-input {
   @apply mt-2 px-0.5 border-0 border-b-2 focus:ring-0;
   background-color: var(--color-background-mute);
   border-color: var(--color-border);
 }
+
 .signup-form-input:focus {
   background-color: var(--color-background-soft);
   border-color: var(--color-border-hover);
 }
+
 .signup-form-btn {
   @apply inline-block w-full p-4 mt-2 rounded-lg text-center capitalize;
   background-color: var(--color-background-mute);
 }
+
 .signup-form-btn:hover {
   background-color: var(--color-background-soft);
 }
