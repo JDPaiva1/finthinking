@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { db } from '@/firebaseConfig'
-import { ref as firebaseRef, onValue, set, push, child, query, limitToLast, update, get } from 'firebase/database'
+import { ref as firebaseRef, onValue, set, push, child, query, limitToLast, update, get, remove } from 'firebase/database'
 import type { Transaction, Transactions } from '@/interfaces/types'
 
 export const useTransactionStore = defineStore('transaction', () => {
@@ -55,7 +55,19 @@ export const useTransactionStore = defineStore('transaction', () => {
     update(dbRef, transaction)
   }
 
-  return { transactions, categories, addTransaction, getTransaction, editTransaction }
+  function deleteTransaction(id: string | string[]) {
+    const dbRef = firebaseRef(db, `transactions/${id}`)
+    remove(dbRef)
+  }
+
+  return {
+    transactions,
+    categories,
+    addTransaction,
+    getTransaction,
+    editTransaction,
+    deleteTransaction
+  }
 })
 
 function orderByDate(transactions:Transactions) {

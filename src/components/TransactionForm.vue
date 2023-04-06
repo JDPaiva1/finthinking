@@ -16,7 +16,9 @@ const store = useTransactionStore()
 const router = useRouter()
 const route = useRoute()
 
-if(route.params?.id) {
+const isEditForm = !!route.params?.id
+
+if(isEditForm) {
   store.getTransaction(route.params.id).then((data:Transaction) => {
     title.value = data.title
     amount.value = data.amount
@@ -44,12 +46,17 @@ function saveTransaction() {
 
   const newTransaction:Transaction = getFormData()
 
-  if(route.params?.id) {
+  if(isEditForm) {
     store.editTransaction(route.params.id, newTransaction)
   } else {
     store.addTransaction(newTransaction)
   }
 
+  router.push({name: 'home'})
+}
+
+function deleteTransaction() {
+  store.deleteTransaction(route.params.id)
   router.push({name: 'home'})
 }
 </script>
@@ -87,6 +94,9 @@ function saveTransaction() {
     <p v-if="showErrorMsg" class="text-red-500">All fields are required</p>
     <button class="t-form-btn" @click="saveTransaction">
       Add Transaction
+    </button>
+    <button v-if="isEditForm" class="t-form-btn text-red-500" @click="deleteTransaction">
+      Delete Transaction
     </button>
   </div>
 </template>
