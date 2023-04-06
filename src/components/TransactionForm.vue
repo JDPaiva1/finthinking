@@ -108,6 +108,9 @@ function deleteTransaction() {
 .t-form-label, .t-form-input {
   @apply w-full block py-2 mb-2 rounded-lg;
 }
+.t-form-label {
+  @apply capitalize;
+}
 .t-form-input {
   @apply mt-2 px-0.5 border-0 border-b-2 focus:ring-0;
   background-color: var(--color-background-mute);

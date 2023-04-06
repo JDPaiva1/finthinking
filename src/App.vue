@@ -1,5 +1,19 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { signOut } from 'firebase/auth';
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { auth } from '@/firebaseConfig';
+
+const router = useRouter()
+
+function signOutBtn() {
+  signOut(auth).then(() => {
+    console.log('Sign-out successfully.')
+    router.push({ name: 'login' })
+  }).catch((error) => {
+    console.error(error);
+    
+  });
+}
 </script>
 
 <template>
@@ -9,6 +23,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/new">New</RouterLink>
+      <a @click="signOutBtn">Sign-Out</a>
     </nav>
   </header>
 </template>
