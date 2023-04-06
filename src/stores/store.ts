@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { db } from '@/firebaseConfig'
-import { ref as firebaseRef, onValue, set, push, child, query, limitToLast, update, get, remove } from 'firebase/database'
 import type { Transaction, Transactions } from '@/interfaces/types'
+import useDb from '@/helpers/database.helper'
+import { orderByDate } from '@/helpers/utils.helper'
 
 export const useTransactionStore = defineStore('transaction', () => {
   const transactions = ref<Transactions>()
@@ -19,45 +19,26 @@ export const useTransactionStore = defineStore('transaction', () => {
     'Miscellaneous'
   ])
 
-  const transactionsRef = firebaseRef(db, 'transactions/')
-  const fetchTransactions = query(transactionsRef, limitToLast(25))
+  const txnDb = new useDb('transactions')
 
-  onValue(fetchTransactions, (snapshot) => {
-    const data = snapshot.val() as Transactions
+  txnDb.fetchAll((data: Transactions) => {
     transactions.value = orderByDate(data)
   })
 
-  function addTransaction(transaction: Transaction) {
-    const newKey = push(child(firebaseRef(db), 'transactions')).key
-    set(firebaseRef(db, 'transactions/' + newKey), transaction)
+  function addTransaction(transaction:Transaction) {
+    txnDb.add(transaction)
   }
 
   function getTransaction(id: string | string[]) {
-    const dbRef = firebaseRef(db, `transactions/${id}`)
-    return new Promise<Transaction>((resolve, reject) => {
-      get(dbRef)
-        .then((snapshot) => {
-          if (snapshot.exists()) {
-            resolve(snapshot.val() as Transaction)
-          } else {
-            reject(null)
-          }
-        })
-        .catch((error) => {
-          console.error('Error occurred while fetching data in getTransaction', error)
-          reject(error)
-        })
-    })
+    return txnDb.get(`${id}`) as Promise<Transaction>
   }
 
   function editTransaction(id: string | string[], transaction: Transaction) {
-    const dbRef = firebaseRef(db, `transactions/${id}`)
-    update(dbRef, transaction)
+    txnDb.update(`${id}`, transaction)
   }
 
   function deleteTransaction(id: string | string[]) {
-    const dbRef = firebaseRef(db, `transactions/${id}`)
-    remove(dbRef)
+    txnDb.delete(`${id}`)
   }
 
   return {
@@ -69,17 +50,3 @@ export const useTransactionStore = defineStore('transaction', () => {
     deleteTransaction
   }
 })
-
-function orderByDate(transactions:Transactions) {
-  const sorted = Object.entries(transactions).reverse().sort(
-    (a, b) => new Date(b[1].date).getTime() - new Date(a[1].date).getTime()
-  )
-
-  const obj:Transactions = {}
-
-  for(const element of sorted) {
-    obj[element[0]] = element[1]
-  }
-
-  return obj
-}
