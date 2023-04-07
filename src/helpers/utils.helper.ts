@@ -13,3 +13,22 @@ export function orderByDate(transactions: Transactions) {
 
   return obj
 }
+
+export function isFieldValid(value: string | number | undefined, type: string):string {
+  if(!value || (typeof value !== 'number' && !value.trim())) {
+    return 'This field is required'
+  } else if (typeof value == 'number') {
+    return ''
+  }
+
+  if (type === 'password' && value.length >= 6) {
+    return 'Password must be at least 6 characters long'
+  }
+
+  const emailRegex = /^[A-Za-z0-9._%+-]+[A-Za-z0-9_%+-]@[A-Za-z0-9_%+-]+[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+  if (type === 'email' && !emailRegex.test(value)) {
+    return 'Please enter a valid email'
+  }
+
+  return ''
+}

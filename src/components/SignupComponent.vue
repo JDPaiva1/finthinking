@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { auth } from '@/firebaseConfig'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { signUp } from '@/helpers/auth.helper';
 import InputComponent from '@/components/atoms/InputComponent.vue'
 
 const name = ref<string>()
@@ -15,7 +14,7 @@ const router = useRouter()
 
 
 function signup() {
-  createUserWithEmailAndPassword(auth, email.value, pwd.value).then(userCredential => {
+  signUp(email.value, pwd.value).then(userCredential => {
     console.log(userCredential)
     router.push({ name: 'home' })
   }).catch(error => {

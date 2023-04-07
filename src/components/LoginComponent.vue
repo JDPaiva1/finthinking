@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { auth } from '@/firebaseConfig'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signIn } from '@/helpers/auth.helper';
 import InputComponent from '@/components/atoms/InputComponent.vue'
 
 const email = ref()
@@ -12,7 +11,7 @@ const showErrorMsg = ref(false)
 const router = useRouter()
 
 function login() {
-  signInWithEmailAndPassword(auth, email.value, pwd.value)
+  signIn(email.value, pwd.value)
     .then(userCredential => {
       // Signed in 
       const user = userCredential.user

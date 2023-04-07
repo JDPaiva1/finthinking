@@ -4,14 +4,12 @@ import { useRoute, useRouter } from 'vue-router'
 import { useTransactionStore } from '@/stores/store'
 import type { Transaction } from '@/interfaces/types'
 import InputComponent from '@/components/atoms/InputComponent.vue'
-import SelectComponent from './atoms/SelectComponent.vue'
 
 const title = ref<string>()
 const amount = ref<number>()
 const category = ref<string>()
 const date = ref<string>()
 
-const showErrorMsg = ref(false)
 const todayDate = ref(new Date().toJSON().split('T')[0])
 
 const store = useTransactionStore()
@@ -42,7 +40,6 @@ function getFormData():Transaction {
 
 function saveTransaction() {
   if(!(title.value || amount.value || category.value || date.value)) {
-    showErrorMsg.value = true
     return
   }
 
@@ -65,13 +62,10 @@ function deleteTransaction() {
 
 <template>
   <div class="t-form">
-    <InputComponent :label="'Title'" :type="'text'" :name="'title'" required v-model:value="title" />
-    <InputComponent :label="'Amount'" :type="'number'" :name="'amount'" required v-model:value="amount" />
-    <SelectComponent :label="'Category'" :name="'category'" :options="store.categories" v-model:value="category" />
-    <InputComponent :label="'Date'" :type="'date'" :name="'date'" :max="todayDate" required v-model:value="date" />
-    <p v-if="showErrorMsg" class="text-red-500">
-      All fields are required
-    </p>
+    <InputComponent label="Title" type="text" name="title" required v-model:value="title" />
+    <InputComponent label="Amount" type="number" name="amount" required v-model:value="amount" />
+    <InputComponent label="Category" type="select" name="category" :options="store.categories" v-model:value="category" />
+    <InputComponent label="Date" type="date" name="date" :max="todayDate" required v-model:value="date" />
     <button class="t-form-btn" @click="saveTransaction">
       {{ isEditForm ? 'Update Transaction' : 'Add Transaction' }}
     </button>
