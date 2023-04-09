@@ -21,7 +21,7 @@ export function isFieldValid(value: string | number | undefined, type: string):s
     return ''
   }
 
-  if (type === 'password' && value.length >= 6) {
+  if (type === 'password' && value.length < 6) {
     return 'Password must be at least 6 characters long'
   }
 
