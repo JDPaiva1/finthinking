@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { Transaction } from '@/interfaces/types'
-import { computed } from 'vue'
+import type { Transaction } from '@/interfaces/types';
+import { computed } from 'vue';
 
 const props = defineProps<{
   transaction: Transaction,
-}>()
+}>();
 
 // Format date
 const date = computed(() => (
   new Date(props.transaction.date).toUTCString().substring(5,16)
-))
+));
 </script>
 
 <template>

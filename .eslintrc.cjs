@@ -1,5 +1,5 @@
 /* eslint-env node */
-require('@rushstack/eslint-patch/modern-module-resolution')
+require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
   root: true,
@@ -12,5 +12,9 @@ module.exports = {
   ignorePatterns: ['ios/*', 'android/*'],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules: {
+    semi: ['error', 'always'],
+    quotes: ['error', 'single']
   }
-}
+};

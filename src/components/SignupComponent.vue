@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { signUp } from '@/helpers/auth.helper';
-import InputComponent from '@/components/atoms/InputComponent.vue'
+import InputComponent from '@/components/atoms/InputComponent.vue';
 
-const name = ref<string>()
-const lastname = ref<string>()
-const email = ref<string>('')
-const pwd = ref()
-const showErrorMsg = ref(false)
+const name = ref<string>();
+const lastname = ref<string>();
+const email = ref<string>('');
+const pwd = ref();
+const showErrorMsg = ref(false);
 
-const router = useRouter()
+const router = useRouter();
 
 
 function signup() {
   signUp(email.value, pwd.value).then(userCredential => {
-    console.log(userCredential)
-    router.push({ name: 'home' })
+    console.log(userCredential);
+    router.push({ name: 'home' });
   }).catch(error => {
-    const errorCode = error.code
-    const errorMsg = error.message
-    console.error(errorCode, errorMsg)
-  })
+    const errorCode = error.code;
+    const errorMsg = error.message;
+    console.error(errorCode, errorMsg);
+  });
 }
 </script>
 

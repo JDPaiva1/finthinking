@@ -1,32 +1,32 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useTransactionStore } from '@/stores/store'
-import type { Transaction } from '@/interfaces/types'
-import InputComponent from '@/components/atoms/InputComponent.vue'
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useTransactionStore } from '@/stores/store';
+import type { Transaction } from '@/interfaces/types';
+import InputComponent from '@/components/atoms/InputComponent.vue';
 
-const title = ref<string>()
-const amount = ref<number>()
-const category = ref<string>()
-const date = ref<string>()
+const title = ref<string>();
+const amount = ref<number>();
+const category = ref<string>();
+const date = ref<string>();
 
-const todayDate = ref(new Date().toJSON().split('T')[0])
+const todayDate = ref(new Date().toJSON().split('T')[0]);
 
-const store = useTransactionStore()
-const router = useRouter()
-const route = useRoute()
+const store = useTransactionStore();
+const router = useRouter();
+const route = useRoute();
 
-const isEditForm = !!route.params?.id
+const isEditForm = !!route.params?.id;
 
 if(isEditForm) {
   store.getTransaction(route.params.id).then((data:Transaction) => {
-    title.value = data.title
-    amount.value = data.amount
-    category.value = data.category
-    date.value = data.date
+    title.value = data.title;
+    amount.value = data.amount;
+    category.value = data.category;
+    date.value = data.date;
   }).catch(error => {
-    error
-  })
+    error;
+  });
 }
 
 function getFormData():Transaction {
@@ -35,28 +35,28 @@ function getFormData():Transaction {
     amount: amount.value || 0,
     category: category.value || '',
     date: date.value || todayDate.value
-  }
+  };
 }
 
 function saveTransaction() {
   if(!(title.value || amount.value || category.value || date.value)) {
-    return
+    return;
   }
 
-  const newTransaction:Transaction = getFormData()
+  const newTransaction:Transaction = getFormData();
 
   if(isEditForm) {
-    store.editTransaction(route.params.id, newTransaction)
+    store.editTransaction(route.params.id, newTransaction);
   } else {
-    store.addTransaction(newTransaction)
+    store.addTransaction(newTransaction);
   }
 
-  router.push({ name: 'home' })
+  router.push({ name: 'home' });
 }
 
 function deleteTransaction() {
-  store.deleteTransaction(route.params.id)
-  router.push({ name: 'home' })
+  store.deleteTransaction(route.params.id);
+  router.push({ name: 'home' });
 }
 </script>
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import LoginComponent from '@/components/LoginComponent.vue'
-import SignupComponent from '@/components/SignupComponent.vue'
+import { useRoute } from 'vue-router';
+import LoginComponent from '@/components/LoginComponent.vue';
+import SignupComponent from '@/components/SignupComponent.vue';
 
-const route = useRoute()
+const route = useRoute();
 </script>
 
 <template>

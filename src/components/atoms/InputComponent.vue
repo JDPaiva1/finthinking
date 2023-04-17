@@ -10,14 +10,14 @@ const props = defineProps<{
   value?: string | number,
   required?: boolean,
   options?: Array<string>
-}>()
+}>();
 
-defineEmits(['update:value'])
-const showErrorMsg = ref<string>()
+defineEmits(['update:value']);
+const showErrorMsg = ref<string>();
 function validate() {
   if(props.required)
-    showErrorMsg.value = isFieldValid(props.value, props.type)
-  return !showErrorMsg.value
+    showErrorMsg.value = isFieldValid(props.value, props.type);
+  return !showErrorMsg.value;
 }
 </script>
 

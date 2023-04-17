@@ -1,4 +1,4 @@
-import { db } from '@/firebaseConfig'
+import { db } from '@/firebaseConfig';
 import {
   ref,
   onValue,
@@ -11,26 +11,26 @@ import {
   get,
   remove,
   type DatabaseReference
-} from 'firebase/database'
+} from 'firebase/database';
 
 export default class useDb {
-  private dbRef:DatabaseReference
+  private dbRef:DatabaseReference;
 
   constructor(path:string) {
-    this.dbRef = ref(db, path)
+    this.dbRef = ref(db, path);
   }
 
   public fetchAll(callback:Function, limit = 25) {
-    const fetchQuery = query(this.dbRef, limitToLast(limit))
+    const fetchQuery = query(this.dbRef, limitToLast(limit));
 
     onValue(fetchQuery, (snapshot) => {
-      callback(snapshot.val())
-    })
+      callback(snapshot.val());
+    });
   }
 
   public add(data:any) {
-    const newKey = push(this.dbRef).key
-    set(child(this.dbRef, `${newKey}`), data)
+    const newKey = push(this.dbRef).key;
+    set(child(this.dbRef, `${newKey}`), data);
   }
 
   public get(id:string) {
@@ -38,22 +38,22 @@ export default class useDb {
       get(child(this.dbRef, id))
         .then((snapshot) => {
           if (snapshot.exists()) {
-            resolve(snapshot.val())
+            resolve(snapshot.val());
           } else {
-            reject(null)
+            reject(null);
           }
         })
         .catch((error) => {
-          reject(error)
-        })
-    })
+          reject(error);
+        });
+    });
   }
 
   public update(id:string, data:any) {
-    update(child(this.dbRef, id), data)
+    update(child(this.dbRef, id), data);
   }
 
   public delete(id:string) {
-    remove(child(this.dbRef, id))
+    remove(child(this.dbRef, id));
   }
 }
