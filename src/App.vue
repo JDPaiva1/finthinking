@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { signOut } from 'firebase/auth';
-import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router';
 import { auth } from '@/firebaseConfig';
 
-const router = useRouter()
+const router = useRouter();
 
 function signOutBtn() {
   signOut(auth).then(() => {
-    console.log('Sign-out successfully.')
-    router.push({ name: 'login' })
+    console.log('Sign-out successfully.');
+    router.push({ name: 'login' });
   }).catch((error) => {
     console.error(error);
     

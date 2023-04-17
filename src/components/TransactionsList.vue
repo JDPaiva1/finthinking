@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useTransactionStore } from '@/stores/store'
-import { useRouter } from 'vue-router'
-import TransactionItem from '@/components/TransactionItem.vue'
+import { useTransactionStore } from '@/stores/store';
+import { useRouter } from 'vue-router';
+import TransactionItem from '@/components/TransactionItem.vue';
 
-const store = useTransactionStore()
-const router = useRouter()
+const store = useTransactionStore();
+const router = useRouter();
 
 function gotoEdit(id: any) {
-  router.push(`/edit/${id}`)
+  router.push(`/edit/${id}`);
 }
 </script>
 
