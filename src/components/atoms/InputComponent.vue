@@ -76,4 +76,5 @@ function validate() {
 .field-input:focus {
   background-color: var(--color-background-soft);
   border-color: var(--color-border-hover);
-}</style>
+}
+</style>
