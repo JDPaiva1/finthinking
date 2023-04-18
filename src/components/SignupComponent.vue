@@ -8,19 +8,18 @@ const name = ref<string>();
 const lastname = ref<string>();
 const email = ref<string>('');
 const pwd = ref();
-const showErrorMsg = ref(false);
+const showErrorMsg = ref('');
 
 const router = useRouter();
 
 
 function signup() {
-  signUp(email.value, pwd.value).then(userCredential => {
+  signUp(email.value, pwd.value, name.value, lastname.value).then(userCredential => {
     console.log(userCredential);
     router.push({ name: 'home' });
   }).catch(error => {
-    const errorCode = error.code;
-    const errorMsg = error.message;
-    console.error(errorCode, errorMsg);
+    showErrorMsg.value = error;
+    console.error('SignUp error', error);
   });
 }
 </script>
@@ -31,10 +30,13 @@ function signup() {
     <InputComponent :label="'lastname'" :type="'text'" :name="'lastname'" required v-model:value="lastname" />
     <InputComponent :label="'email'" :type="'email'" :name="'email'" required v-model:value="email" />
     <InputComponent :label="'password'" :type="'password'" :name="'password'" required v-model:value="pwd" />
-    <p v-if="showErrorMsg" class="text-red-500">All fields are required</p>
+
+    <p v-if="showErrorMsg" class="text-red-500">{{ showErrorMsg }}</p>
+
     <button class="signup-form-btn" @click="signup">
       signup
     </button>
+
     <RouterLink class="signup-form-btn" to="/login">
       login
     </RouterLink>

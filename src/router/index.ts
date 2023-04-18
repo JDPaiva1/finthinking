@@ -7,18 +7,12 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/LoginSignupView.vue'),
-      beforeEnter: () => {
-        if (auth?.currentUser) return false;
-      }
+      component: () => import('../views/LoginSignupView.vue')
     },
     {
       path: '/signup',
       name: 'signup',
-      component: () => import('../views/LoginSignupView.vue'),
-      beforeEnter: () => {
-        if (auth?.currentUser) return false;
-      }
+      component: () => import('../views/LoginSignupView.vue')
     },
     {
       path: '/',
