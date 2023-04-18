@@ -28,9 +28,10 @@ export default class useDb {
     });
   }
 
-  public add(data:any) {
-    const newKey = push(this.dbRef).key;
-    set(child(this.dbRef, `${newKey}`), data);
+  public add(data:any, key?:string) {
+    const newKey = this.getNewKey();
+    set(child(this.dbRef, `${key || newKey}`), data);
+    return key || newKey;
   }
 
   public get(id:string) {
@@ -49,11 +50,15 @@ export default class useDb {
     });
   }
 
-  public update(id:string, data:any) {
+  public update(id:string, data:object) {
     update(child(this.dbRef, id), data);
   }
 
   public delete(id:string) {
     remove(child(this.dbRef, id));
+  }
+
+  public getNewKey(path = '') {
+    return push(child(this.dbRef, `/${path}`)).key;
   }
 }

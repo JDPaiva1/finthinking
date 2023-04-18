@@ -6,7 +6,7 @@ import InputComponent from '@/components/atoms/InputComponent.vue';
 
 const email = ref();
 const pwd = ref();
-const showErrorMsg = ref(false);
+const showErrorMsg = ref('');
 
 const router = useRouter();
 
@@ -14,14 +14,12 @@ function login() {
   signIn(email.value, pwd.value)
     .then(userCredential => {
       // Signed in 
-      const user = userCredential.user;
-      console.log(user);
+      console.log(userCredential);
       router.push({ name: 'home' });
     })
     .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error(errorCode, errorMessage);
+      showErrorMsg.value = error;
+      console.error(error);
     });
 }
 </script>
@@ -30,10 +28,12 @@ function login() {
   <div class="login-form">
     <InputComponent :label="'email'" :type="'email'" :name="'email'" required v-model:value="email" />
     <InputComponent :label="'password'" :type="'password'" :name="'password'" required v-model:value="pwd" />
-    <p v-if="showErrorMsg" class="text-red-500">All fields are required</p>
+
+    <p v-if="showErrorMsg" class="text-red-500">{{ showErrorMsg }}</p>
     <button class="login-form-btn" @click="login">
       Login
     </button>
+
     <RouterLink class="login-form-btn" to="/signup">
       Signup
     </RouterLink>
