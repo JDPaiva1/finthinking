@@ -25,10 +25,37 @@ export function isFieldValid(value: string | number | undefined, type: string):s
     return 'Password must be at least 6 characters long';
   }
 
-  const emailRegex = /^[A-Za-z0-9._%+-]+[A-Za-z0-9_%+-]@[A-Za-z0-9_%+-]+[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
   if (type === 'email' && !emailRegex.test(value)) {
     return 'Please enter a valid email';
   }
 
   return '';
+}
+
+export function validateEmail(value:string) {
+  // if the field is empty
+  if (!value) {
+    return 'The email is required';
+  }
+  // if the field is not a valid email
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+  if (!regex.test(value)) {
+    return 'This field must be a valid email';
+  }
+  // All is good
+  return true;
+}
+
+export function validatePassword(value: string) {
+  // if the field is empty
+  if (!value) {
+    return 'The password is required';
+  }
+  // if the field is not a valid password
+  if (value.length < 6) {
+    return 'Password must be at least 6 characters long';
+  }
+  // All is good
+  return true;
 }
