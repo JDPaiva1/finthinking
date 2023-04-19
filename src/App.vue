@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { RouterLink, RouterView, useRouter } from 'vue-router';
+import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router';
 import { logOut } from '@/helpers/auth.helper';
 
 const router = useRouter();
+const route = useRoute();
 
 function signOutBtn() {
   logOut().then(() => {
@@ -17,7 +18,7 @@ function signOutBtn() {
 <template>
   <RouterView />
 
-  <header class="wrapper">
+  <header class="wrapper" v-if="route.name !== 'login' && route.name !== 'signup'">
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/new">New</RouterLink>
