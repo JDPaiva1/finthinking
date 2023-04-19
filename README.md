@@ -1,6 +1,6 @@
 # finthinking
 
-This template should help get you started developing with Vue 3 in Vite.
+Mobile money tracker app developed with Vue.js 3, TypeScript, CapacitorJS and Firebase for Android and iOS devices.
 
 ## Recommended IDE Setup
 
@@ -16,10 +16,6 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
     1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
     2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
@@ -43,4 +39,25 @@ npm run build
 
 ```sh
 npm run lint
+```
+
+### Copy web bundle and update native dependencies
+To copy over the already built web bundle to both Android and iOS projects as well as update the native dependencies that Capacitor:
+
+```sh
+npx cap sync
+```
+
+### Run debug build on iOS device
+To run a debug build the app on an iOS device, you can run:
+
+```sh
+npx cap run ios
+```
+
+### Run debug build on Android device
+To run a debug build the app on an Android device, you can run:
+
+```sh
+npx cap run android
 ```
