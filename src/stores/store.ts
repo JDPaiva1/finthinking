@@ -4,7 +4,7 @@ import type { Transaction, Transactions } from '@/interfaces/types';
 import useDb from '@/helpers/database.helper';
 import { orderByDate } from '@/helpers/utils.helper';
 
-export const useTransactionStore = defineStore('transaction', () => {
+export const useStore = defineStore('store', () => {
   const transactions = ref<Transactions>();
   const categories = ref([
     'Housting',
