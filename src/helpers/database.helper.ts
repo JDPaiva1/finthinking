@@ -20,8 +20,8 @@ export default class useDb {
     this.dbRef = ref(db, path);
   }
 
-  public fetchAll(callback:Function, limit = 25) {
-    const fetchQuery = query(this.dbRef, limitToLast(limit));
+  public fetchAll(callback:Function, {limit = 100, path = '/'}) {
+    const fetchQuery = query(child(this.dbRef, path), limitToLast(limit));
 
     onValue(fetchQuery, (snapshot) => {
       callback(snapshot.val());
@@ -35,7 +35,7 @@ export default class useDb {
   }
 
   public get(id:string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       get(child(this.dbRef, id))
         .then((snapshot) => {
           if (snapshot.exists()) {
@@ -61,4 +61,11 @@ export default class useDb {
   public getNewKey(path = '') {
     return push(child(this.dbRef, `/${path}`)).key;
   }
+}
+
+export async function getTransactionsInstance(uid:string) {
+  const userDb = new useDb(`/users/${uid}/`);
+  const wallets = await userDb.get('/wallets');
+  const wallet = Object.keys(wallets)[0];
+  return new useDb(`/wallets/${wallet}/transactions`);
 }
