@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useTransactionStore } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import type { Transaction } from '@/interfaces/types';
 import InputComponent from '@/components/atoms/InputComponent.vue';
 
@@ -12,7 +12,7 @@ const date = ref<string>();
 
 const todayDate = ref(new Date().toJSON().split('T')[0]);
 
-const store = useTransactionStore();
+const store = useStore();
 const router = useRouter();
 const route = useRoute();
 

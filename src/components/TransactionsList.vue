@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useTransactionStore } from '@/stores/store';
+import { useStore } from '@/stores/store';
 import { useRouter } from 'vue-router';
 import TransactionItem from '@/components/TransactionItem.vue';
 
-const store = useTransactionStore();
+const store = useStore();
 const router = useRouter();
 
 function gotoEdit(id: any) {
