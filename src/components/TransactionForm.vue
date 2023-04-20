@@ -9,6 +9,7 @@ const title = ref<string>();
 const amount = ref<number>();
 const category = ref<string>();
 const date = ref<string>();
+const transaction = ref<Transaction>();
 
 const todayDate = ref(new Date().toJSON().split('T')[0]);
 
@@ -20,6 +21,7 @@ const isEditForm = !!route.params?.id;
 
 if(isEditForm) {
   store.getTransaction(route.params.id).then((data:Transaction) => {
+    transaction.value = data;
     title.value = data.title;
     amount.value = data.amount;
     category.value = data.category;
@@ -43,19 +45,17 @@ function saveTransaction() {
     return;
   }
 
-  const newTransaction:Transaction = getFormData();
-
   if(isEditForm) {
-    store.editTransaction(route.params.id, newTransaction);
+    store.editTransaction(route.params.id, getFormData(), transaction.value);
   } else {
-    store.addTransaction(newTransaction);
+    store.addTransaction(getFormData());
   }
 
   router.push({ name: 'home' });
 }
 
 function deleteTransaction() {
-  store.deleteTransaction(route.params.id);
+  store.deleteTransaction(route.params.id, getFormData());
   router.push({ name: 'home' });
 }
 </script>
