@@ -1,24 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useStore } from '@/stores/store';
 
-const balance = ref(9400);
-const income = ref(5000);
-const expenses = ref(12000);
+const store = useStore();
 </script>
 
 <template>
   <div class="dashboard">
     <h2 class="dashboard-balance-title">Account Balance</h2>
-    <h1 class="dashboard-balance">€ {{ balance }}</h1>
+    <h1 class="dashboard-balance">€ {{ store.balance }}</h1>
 
     <div class="dashboard-widget-container">
       <div class="dashboard-widget bg-green-800">
         <p class="dashboard-widget-text">Income</p>
-        <p class="dashboard-widget-balance">€ {{ income }}</p>
+        <p class="dashboard-widget-balance">€ {{ store.income }}</p>
       </div>
       <div class="dashboard-widget bg-red-800">
-        <p class="dashboard-widget-text">Expense</p>
-        <p class="dashboard-widget-balance">€ {{ expenses }}</p>
+        <p class="dashboard-widget-text">Expenses</p>
+        <p class="dashboard-widget-balance">€ {{ store.expenses }}</p>
       </div>
     </div>
   </div>
