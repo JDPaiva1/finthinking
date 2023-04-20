@@ -61,3 +61,7 @@ export function logOut() {
       });
   });
 }
+
+export function getCurrentUID() {
+  return auth.currentUser?.uid || '';
+}
