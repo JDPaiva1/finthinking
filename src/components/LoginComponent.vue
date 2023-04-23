@@ -10,11 +10,10 @@ const showErrorMsg = ref('');
 
 const router = useRouter();
 
-function login() {
+function login(event:any) {
+  event.preventDefault();
   signIn(email.value, pwd.value)
-    .then(userCredential => {
-      // Signed in 
-      console.log(userCredential);
+    .then(() => {
       router.push({ name: 'home' });
     })
     .catch(error => {
@@ -29,28 +28,33 @@ function login() {
     <InputComponent :label="'email'" :type="'email'" :name="'email'" required v-model:value="email" />
     <InputComponent :label="'password'" :type="'password'" :name="'password'" required v-model:value="pwd" />
 
-    <p v-if="showErrorMsg" class="text-red-500">{{ showErrorMsg }}</p>
-    <button class="login-form-btn" @click="login">
-      Login
+    <p v-if="showErrorMsg" class="login-error">{{ showErrorMsg }}</p>
+
+    <button class="form-btn" @click="$event => login($event)">
+      Sign in
     </button>
 
-    <RouterLink class="login-form-btn" to="/signup">
-      Signup
-    </RouterLink>
+    <div class="text-sm text-center pt-3">
+      <RouterLink to="/forgot" class="form-link">Forgot your password?</RouterLink>
+    </div>
+
+    <p class="login-link-container">
+      Not a member yet? 
+      <RouterLink class="form-link" to="/signup">
+        Create a new account
+      </RouterLink>
+    </p>
   </div>
 </template>
 
 <style scoped>
-.login-form {
+/* .login-form {
   @apply px-2;
+} */
+.login-error {
+  @apply mt-2 text-sm text-red-600;
 }
-
-.login-form-btn {
-  @apply inline-block w-full p-4 mt-2 rounded-lg text-center capitalize;
-  background-color: var(--color-background-mute);
-}
-
-.login-form-btn:hover {
-  background-color: var(--color-background-soft);
+.login-link-container {
+  @apply mt-10 text-center text-sm text-gray-500;
 }
 </style>

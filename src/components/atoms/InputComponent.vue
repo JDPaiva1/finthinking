@@ -23,58 +23,68 @@ function validate() {
 
 <template>
   <div class="field-wrapper">
-    <label class="field-label" :for="name">
-      {{ label }}
-    </label>
+    <label :for="name" class="field-label">{{ label }}</label>
 
-    <select
-      v-if="type == 'select'"
-      class="field-input"
-      :name="name"
-      :required="required"
-      :value="value"
-      @input="$event => $emit('update:value', ($event.target as HTMLInputElement)?.value)"
-    >
-      <option v-for="(option, index) in options" :key="index" :value="option">
-        {{ option }}
-      </option>
-    </select>
+    <div class="field-input-container">
 
-    <input
-      v-else
-      class="field-input"
-      :type="type"
-      :name="name"
-      :required="required"
-      :value="value"
-      :max="max"
-      @input="$event => $emit('update:value', ($event.target as HTMLInputElement)?.value)"
-      @blur="validate"
-    />
+      <select
+        v-if="type == 'select'"
+        class="field-input"
+        :name="name"
+        :required="required"
+        :value="value"
+        @input="$event => $emit('update:value', ($event.target as HTMLInputElement)?.value)"
+      >
+        <option v-for="(option, index) in options" :key="index" :value="option">
+          {{ option }}
+        </option>
+      </select>
 
-    <p v-if="showErrorMsg" class="text-red-500">
-      {{ showErrorMsg }}
-    </p>
+      <input
+        v-else
+        class="field-input"
+        :type="type"
+        :name="name"
+        :required="required"
+        :value="value"
+        :max="max"
+        :placeholder="type === 'email' ? 'example@example.com' : ''"
+        @input="$event => $emit('update:value', ($event.target as HTMLInputElement)?.value)"
+        @blur="validate"
+      />
+
+      <p v-if="showErrorMsg" class="field-error">
+        {{ showErrorMsg }}
+      </p>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .field-wrapper {
-  @apply mb-2;
+  @apply mb-6;
 }
 
 .field-label {
-  @apply capitalize;
+  @apply capitalize block text-sm font-medium leading-6;
+}
+
+.field-input-container {
+  @apply  mt-2 rounded-md shadow-sm;
 }
 
 .field-input {
-  @apply w-full block py-2 border-0 border-b-2 focus:ring-0;
-  background-color: var(--color-background-mute);
-  border-color: var(--color-border);
+  @apply block w-full rounded-md border-0 py-1.5 px-3 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-vbg-mute border-vborder;
 }
 
 .field-input:focus {
-  background-color: var(--color-background-soft);
-  border-color: var(--color-border-hover);
+  @apply focus:ring-2 focus:ring-inset focus:ring-indigo-600 bg-vbg-soft border-vborder-hover;
+}
+
+.error .field-input {
+  @apply ring-red-600;
+}
+.field-error {
+  @apply mt-2 text-sm text-red-600;
 }
 </style>

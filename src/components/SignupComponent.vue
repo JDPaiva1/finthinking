@@ -14,8 +14,7 @@ const router = useRouter();
 
 
 function signup() {
-  signUp(email.value, pwd.value, name.value, lastname.value).then(userCredential => {
-    console.log(userCredential);
+  signUp(email.value, pwd.value, name.value, lastname.value).then(() => {
     router.push({ name: 'home' });
   }).catch(error => {
     showErrorMsg.value = error;
@@ -31,49 +30,29 @@ function signup() {
     <InputComponent :label="'email'" :type="'email'" :name="'email'" required v-model:value="email" />
     <InputComponent :label="'password'" :type="'password'" :name="'password'" required v-model:value="pwd" />
 
-    <p v-if="showErrorMsg" class="text-red-500">{{ showErrorMsg }}</p>
+    <p v-if="showErrorMsg" class="signup-error">{{ showErrorMsg }}</p>
 
-    <button class="signup-form-btn" @click="signup">
-      signup
+    <button class="form-btn" @click="signup">
+      Sign up
     </button>
 
-    <RouterLink class="signup-form-btn" to="/login">
-      login
-    </RouterLink>
+    <p class="signup-link-container">
+      Already have an account? 
+      <RouterLink class="form-link" to="/login">
+        Sign in
+      </RouterLink>
+    </p>
   </div>
 </template>
 
 <style scoped>
-.signup-form {
+/* .signup-form {
   @apply px-2;
+} */
+.signup-error {
+  @apply mt-2 text-sm text-red-600;
 }
-
-.signup-form-label,
-.signup-form-input {
-  @apply w-full block py-2 mb-2 rounded-lg;
-}
-
-.signup-form-label {
-  @apply capitalize;
-}
-
-.signup-form-input {
-  @apply mt-2 px-0.5 border-0 border-b-2 focus:ring-0;
-  background-color: var(--color-background-mute);
-  border-color: var(--color-border);
-}
-
-.signup-form-input:focus {
-  background-color: var(--color-background-soft);
-  border-color: var(--color-border-hover);
-}
-
-.signup-form-btn {
-  @apply inline-block w-full p-4 mt-2 rounded-lg text-center capitalize;
-  background-color: var(--color-background-mute);
-}
-
-.signup-form-btn:hover {
-  background-color: var(--color-background-soft);
+.signup-link-container {
+  @apply mt-10 text-center text-sm text-gray-500;
 }
 </style>

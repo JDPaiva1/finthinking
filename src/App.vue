@@ -18,7 +18,7 @@ function signOutBtn() {
 <template>
   <RouterView />
 
-  <header class="wrapper" v-if="route.name !== 'login' && route.name !== 'signup'">
+  <header class="wrapper" v-if="route.name !== 'login' && route.name !== 'signup' && route.name !== 'forgot'">
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/new">New</RouterLink>
