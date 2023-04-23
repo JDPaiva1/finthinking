@@ -27,8 +27,7 @@ const store = useStore();
   @apply rounded-[32px] text-center;
 }
 .dashboard-balance {
-  @apply text-4xl font-semibold mb-7;
-  color: var(--color-heading);
+  @apply text-4xl font-semibold mb-7 text-vheading;
 }
 .dashboard-balance-title {
   @apply text-sm mb-2;

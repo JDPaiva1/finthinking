@@ -34,8 +34,7 @@ const date = computed(() => (
 
 <style scoped>
 .t-item {
-  @apply mt-2 p-4 rounded-3xl flex gap-3;
-  background-color: var(--color-background-soft);
+  @apply mt-2 p-4 rounded-3xl flex gap-3 bg-vbg-soft;
 }
 .t-item-icon {
   @apply h-14 w-16 bg-gray-500 rounded-2xl;

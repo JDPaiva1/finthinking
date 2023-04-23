@@ -41,7 +41,7 @@ nav {
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  @apply text-vtext;
 }
 
 nav a.router-link-exact-active:hover {
@@ -49,8 +49,7 @@ nav a.router-link-exact-active:hover {
 }
 
 nav a {
-  @apply inline-block py-0 px-4 border-l border-solid;
-  border-left-color: var(--color-border);
+  @apply inline-block py-0 px-4 border-l border-solid border-l-vborder;
 }
 
 nav a:first-of-type {
