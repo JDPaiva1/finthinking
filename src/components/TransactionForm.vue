@@ -66,10 +66,10 @@ function deleteTransaction() {
     <InputComponent label="Amount" type="number" name="amount" required v-model:value="amount" />
     <InputComponent label="Category" type="select" name="category" :options="store.categories" v-model:value="category" />
     <InputComponent label="Date" type="date" name="date" :max="todayDate" required v-model:value="date" />
-    <button class="t-form-btn" @click="saveTransaction">
+    <button class="form-btn" @click="saveTransaction">
       {{ isEditForm ? 'Update Transaction' : 'Add Transaction' }}
     </button>
-    <button v-if="isEditForm" class="t-form-btn text-red-500" @click="deleteTransaction">
+    <button v-if="isEditForm" class="form-btn form-btn-error" @click="deleteTransaction">
       Delete Transaction
     </button>
   </div>
@@ -77,15 +77,6 @@ function deleteTransaction() {
 
 <style scoped>
 .t-form {
-  @apply px-2;
-}
-
-.t-form-btn {
-  @apply w-full p-4 mt-2 rounded-lg;
-  background-color: var(--color-background-mute);
-}
-
-.t-form-btn:hover {
-  background-color: var(--color-background-soft);
+  @apply flex min-h-full flex-1 flex-col justify-center px-2 py-8;
 }
 </style>

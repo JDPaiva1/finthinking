@@ -17,6 +17,9 @@ module.exports = {
         },
         vheading: 'var(--color-heading)',
         vtext: 'var(--color-text)'
+      },
+      transitionDuration: {
+        400: '400ms'
       }
     }
   },

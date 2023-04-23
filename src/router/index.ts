@@ -10,6 +10,11 @@ const router = createRouter({
       component: () => import('../views/LoginSignupView.vue')
     },
     {
+      path: '/forgot',
+      name: 'forgot',
+      component: () => import('../views/LoginSignupView.vue')
+    },
+    {
       path: '/signup',
       name: 'signup',
       component: () => import('../views/LoginSignupView.vue')
@@ -34,7 +39,7 @@ const router = createRouter({
 
 router.beforeEach(async (to) => {
   const isAuthenticated = !!auth.currentUser;
-  if(!isAuthenticated && to.name !== 'login' && to.name !== 'signup') {
+  if(!isAuthenticated && to.name !== 'login' && to.name !== 'signup' && to.name !== 'forgot') {
     return { name: 'login' };
   }
 });

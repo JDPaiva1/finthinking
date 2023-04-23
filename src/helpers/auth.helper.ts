@@ -1,6 +1,7 @@
 import { auth } from '@/firebaseConfig';
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   type UserCredential
@@ -64,4 +65,10 @@ export function logOut() {
 
 export function getCurrentUID() {
   return auth.currentUser?.uid || '';
+}
+
+export function onAuthChanged(callback: Function) {
+  onAuthStateChanged(auth, (user) => {
+    callback(user);
+  });
 }
