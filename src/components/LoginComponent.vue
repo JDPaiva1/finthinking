@@ -10,14 +10,14 @@ const showErrorMsg = ref('');
 
 const router = useRouter();
 
-function login(event:any) {
+function login(event: MouseEvent) {
   event.preventDefault();
   signIn(email.value, pwd.value)
     .then(() => {
       router.push({ name: 'home' });
     })
     .catch(error => {
-      showErrorMsg.value = error;
+      showErrorMsg.value = error.message ? error.message : error;
       console.error(error);
     });
 }

@@ -11,7 +11,7 @@ const route = useRoute();
 
 const isLogin = computed(() => route.name === 'login');
 
-onAuthChanged((user:User|any) => {
+onAuthChanged((user: User | null) => {
   if(user) {
     router.push({name: 'home'});
   }
