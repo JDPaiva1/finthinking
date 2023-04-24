@@ -6,7 +6,7 @@ import TransactionItem from '@/components/TransactionItem.vue';
 const store = useStore();
 const router = useRouter();
 
-function gotoEdit(id: any) {
+function gotoEdit(id: string | number) {
   router.push(`/edit/${id}`);
 }
 </script>
