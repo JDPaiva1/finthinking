@@ -66,7 +66,7 @@ function validate() {
 }
 
 .field-label {
-  @apply capitalize block text-sm font-medium leading-6;
+  @apply capitalize block text-base font-medium;
 }
 
 .field-input-container {
@@ -74,7 +74,7 @@ function validate() {
 }
 
 .field-input {
-  @apply block w-full rounded-md border-0 py-1.5 px-3 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-vbg-mute border-vborder;
+  @apply block w-full rounded-md border-0 py-1.5 px-3 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-base bg-vbg-mute border-vborder;
 }
 
 .field-input:focus {
