@@ -46,7 +46,7 @@ function saveTransaction() {
   }
 
   if(isEditForm) {
-    store.editTransaction(route.params.id, getFormData(), transaction.value);
+    store.editTransaction(route.params.id, getFormData());
   } else {
     store.addTransaction(getFormData());
   }
@@ -55,7 +55,7 @@ function saveTransaction() {
 }
 
 function deleteTransaction() {
-  store.deleteTransaction(route.params.id, getFormData());
+  store.deleteTransaction(route.params.id);
   router.push({ name: 'home' });
 }
 </script>
