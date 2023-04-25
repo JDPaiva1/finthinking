@@ -46,7 +46,7 @@ function validate() {
         :type="type"
         :name="name"
         :required="required"
-        :value="value"
+        :value="type === 'number' ? Math.abs(Number(value)) : value"
         :max="max"
         :placeholder="type === 'email' ? 'example@example.com' : ''"
         @input="$event => $emit('update:value', ($event.target as HTMLInputElement)?.value)"
