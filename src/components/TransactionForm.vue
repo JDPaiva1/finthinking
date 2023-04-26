@@ -62,8 +62,10 @@ function updateAmountSign() {
   <div class="t-form">
     <InputComponent label="Title" type="text" name="title" required v-model:value="txnForm.title" />
     <InputComponent label="Amount" type="number" name="amount" required v-model:value="txnForm.amount" />
-    <InputComponent label="Category" type="select" name="category" :options="store.categories" v-model:value="txnForm.category" />
-    <InputComponent label="Date" type="date" name="date" :max="todayDate" required v-model:value="txnForm.date" />
+    <div class="t-form-input-wrapper">
+      <InputComponent label="Category" type="select" name="category" :options="store.categories" v-model:value="txnForm.category" />
+      <InputComponent label="Date" type="date" name="date" :max="todayDate" required v-model:value="txnForm.date" />
+    </div>
     <button class="form-btn" @click="saveTransaction">
       {{ isEditForm ? 'Update Transaction' : 'Add Transaction' }}
     </button>
@@ -73,7 +75,7 @@ function updateAmountSign() {
   </div>
 </template>
 
-<style scoped>
+<style>
 .t-form {
   @apply flex min-h-full flex-1 flex-col justify-center px-2 py-8;
 }
@@ -86,5 +88,14 @@ function updateAmountSign() {
 }
 .t-form-switch-span {
   @apply w-full px-4 py-2;
+}
+.t-form-input-wrapper {
+  @apply flex justify-between content-center;
+}
+.t-form-input-wrapper .field-wrapper {
+  @apply basis-[45%];
+}
+.t-form-input-wrapper .field-wrapper select {
+  @apply h-[38px];
 }
 </style>
