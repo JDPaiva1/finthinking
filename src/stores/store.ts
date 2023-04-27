@@ -6,27 +6,45 @@ import { orderByDate } from '@/helpers/utils.helper';
 import { getCurrentUID } from '@/helpers/auth.helper';
 
 export const useStore = defineStore('store', () => {
-  const transactions = ref<Transactions>({ '0': { category: '', amount: 0, title: '', date: new Date().toISOString() } });
+  // State
+  const transactions = ref<Transactions>({
+    '0': { category: '', amount: 0, title: '', date: new Date().toISOString() }
+  });
   const categories = ref<string[]>();
+  const name = ref<string>();
+  const lastname = ref<string>();
 
-  let txnDb:useDb;
+  let txnDb: useDb;
 
   const userDb = new useDb(`/users/${getCurrentUID()}/`);
-  userDb.get('/wallets').then(wallets => {
-    const wallet = Object.keys(wallets)[0];
+  userDb
+    .get('/')
+    .then((data) => {
+      // Set the value of name and lastname retrieved from firebase
+      name.value = data.name;
+      lastname.value = data.lastname;
 
-    txnDb = new useDb(`/wallets/${wallet}/transactions`);
+      // Retrieve the wallets from the data object and get the default wallet
+      const wallets = data.wallets;
+      const wallet = Object.keys(wallets)[0];
 
-    txnDb.fetchAll((data: Transactions) => {
-      transactions.value = orderByDate(data);
-    }, {});
-  }).catch(error => console.error('error getting wallet', error));
+      // Create a new transactions database object using the wallet key
+      txnDb = new useDb(`/wallets/${wallet}/transactions`);
+      // Retrieve all transactions from the transactions database object
+      txnDb.fetchAll((data: Transactions) => {
+        transactions.value = orderByDate(data);
+      }, {});
+
+    }).catch(error => console.error('error getting wallet', error));
 
   const categoriesDb = new useDb('/categories');
 
-  categoriesDb.fetchAll((data:string[]) => {
+  categoriesDb.fetchAll((data: string[]) => {
     categories.value = data;
   }, {});
+
+  // Getters
+  const fullname = computed(() => `${name.value} ${lastname.value}`);
 
   const balance = computed(() => {
     let balanceTmp = 0;
@@ -68,7 +86,8 @@ export const useStore = defineStore('store', () => {
     return incomeTmp;
   });
 
-  function addTransaction(transaction:Transaction) {
+  // Actions
+  function addTransaction(transaction: Transaction) {
     txnDb.add(transaction);
   }
 
@@ -87,6 +106,9 @@ export const useStore = defineStore('store', () => {
   return {
     transactions,
     categories,
+    name,
+    lastname,
+    fullname,
     balance,
     getExpenses,
     expenses,
