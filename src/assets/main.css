@@ -12,13 +12,6 @@
 a,
 .green {
   @apply no-underline duration-400;
-  color: hsla(160, 100%, 37%, 1);
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: rgba(0, 189, 126, 0.2);
-  }
 }
 
 .form-btn {
