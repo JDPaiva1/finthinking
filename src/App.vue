@@ -1,18 +1,7 @@
 <script setup lang="ts">
-import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router';
-import { logOut } from '@/helpers/auth.helper';
+import { RouterLink, RouterView, useRoute } from 'vue-router';
 
-const router = useRouter();
 const route = useRoute();
-
-function signOutBtn() {
-  logOut().then(() => {
-    console.log('Sign-out successfully.');
-    router.push({ name: 'login' });
-  }).catch((error) => {
-    console.error(error);
-  });
-}
 </script>
 
 <template>
@@ -26,39 +15,15 @@ function signOutBtn() {
   </header>
   <RouterView />
 
-  <nav class="wrapper" v-if="route.name !== 'login' && route.name !== 'signup' && route.name !== 'forgot'">
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/new">New</RouterLink>
-    <a @click="signOutBtn">Sign-Out</a>
-  </nav>
+  <RouterLink to="/new" class="add-button" v-if="route.name == 'home'">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-12 w-12">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+    </svg>
+  </RouterLink>
 </template>
 
 <style scoped>
-header {
-  @apply leading-[1.5] max-h-screen;
-}
-
-.logo {
-  @apply block mx-auto mb-8;
-}
-
-nav {
-  @apply w-full text-[12px] text-center mt-8;
-}
-
-nav a.router-link-exact-active {
-  @apply text-vtext;
-}
-
-nav a.router-link-exact-active:hover {
-  @apply bg-transparent;
-}
-
-nav a {
-  @apply inline-block py-0 px-4 border-l border-solid border-l-vborder;
-}
-
-nav a:first-of-type {
-  @apply border-0;
+.add-button {
+  @apply fixed bottom-8 right-8 h-14 w-14 rounded-full bg-indigo-600 text-white flex justify-center content-center items-center;
 }
 </style>
