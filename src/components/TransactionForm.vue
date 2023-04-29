@@ -56,8 +56,12 @@ function updateAmountSign() {
 <template>
   <label for="switch" class="t-form-switch">
     <input name="switch" type="checkbox" class="t-form-switch-input" v-model="isIncome">
-    <span class="t-form-switch-span rounded-l-md bg-gray-300" :class="{ 'bg-red-600': !isIncome }" @click="toggle">Expense</span>
-    <span class="t-form-switch-span rounded-r-md bg-gray-300" :class="{ 'bg-green-600': isIncome }" @click="toggle">Income</span>
+    <span class="t-form-switch-span rounded-l-md bg-gray-300" :class="{ 'bg-red-600': !isIncome }" @click="toggle">
+      Expense
+    </span>
+    <span class="t-form-switch-span rounded-r-md bg-gray-300" :class="{ 'bg-green-600': isIncome }" @click="toggle">
+      Income
+    </span>
   </label>
   <div class="t-form">
     <InputComponent label="Title" type="text" name="title" required v-model:value="txnForm.title" />
