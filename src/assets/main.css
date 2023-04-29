@@ -1,4 +1,5 @@
 @import './base.css';
+@import './icons/style.css';
 
 /* tailwind */
 @tailwind base;
