@@ -50,3 +50,9 @@
 .icon-user:before {
   content: "\e907";
 }
+.icon-home:before {
+  content: "\e908";
+}
+.icon-chart-pie:before {
+  content: "\e909";
+}
