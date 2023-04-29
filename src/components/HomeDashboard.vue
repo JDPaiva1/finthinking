@@ -1,27 +1,33 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+import { currencyFormatter } from '@/helpers/utils.helper';
 import { useStore } from '@/stores/store';
 
 const store = useStore();
+// Format
+const balance = computed(() => currencyFormatter(store.balance));
+const income = computed(() => currencyFormatter(store.income));
+const expenses = computed(() => currencyFormatter(store.expenses));
 </script>
 
 <template>
   <div class="dashboard">
     <h2 class="dashboard-balance-title">Account Balance</h2>
-    <h1 class="dashboard-balance">€ {{ store.balance }}</h1>
+    <h1 class="dashboard-balance">{{ balance }}</h1>
 
     <div class="dashboard-widget-container">
       <div class="dashboard-widget bg-green-800">
         <i class="icon-arrow-trending-up"></i>
         <div class="dashboard-widget-text-wrapper">
           <p class="dashboard-widget-text">Income</p>
-          <p class="dashboard-widget-balance">€ {{ store.income }}</p>
+          <p class="dashboard-widget-balance">{{ income }}</p>
         </div>
       </div>
       <div class="dashboard-widget bg-red-800">
         <i class="icon-arrow-trending-down"></i>
         <div class="dashboard-widget-text-wrapper">
           <p class="dashboard-widget-text">Expenses</p>
-          <p class="dashboard-widget-balance">€ {{ store.expenses }}</p>
+          <p class="dashboard-widget-balance">{{ expenses }}</p>
         </div>
       </div>
     </div>
