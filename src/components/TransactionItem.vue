@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { currencyFormatter } from '@/helpers/utils.helper';
 import type { Transaction } from '@/interfaces/types';
 import { computed } from 'vue';
 
@@ -9,6 +10,10 @@ const props = defineProps<{
 // Format date
 const date = computed(() => (
   new Date(props.transaction.date).toUTCString().substring(5,16)
+));
+// Format amout
+const amount = computed(() => (
+  currencyFormatter(Math.abs(props.transaction.amount))
 ));
 </script>
 
@@ -29,7 +34,7 @@ const date = computed(() => (
           {{ transaction.title }}
         </p>
         <p :class="['t-item-amount', { 'expenses': transaction.amount < 0}]">
-          € {{ transaction.amount }}
+          {{ amount }}
         </p>
       </div>
 
