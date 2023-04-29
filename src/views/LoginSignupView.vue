@@ -21,7 +21,7 @@ onAuthChanged((user: User | null) => {
 <template>
   <main class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
     <div class="mx-auto w-full max-w-sm">
-      <img class="mx-auto h-24 w-auto" src="https://firebasestorage.googleapis.com/v0/b/finthinking.appspot.com/o/logo-placeholder.png?alt=media&token=478c3095-7fe5-4296-81c4-2bad74e53bd4" alt="Your Company" />
+      <img class="mx-auto h-24 w-auto" src="@/assets/logo.svg" alt="Your Company" />
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
         {{ isLogin ? 'Sign in to your account' : 'Create a new account'}}
       </h2>
