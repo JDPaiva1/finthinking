@@ -7,6 +7,7 @@ const props = defineProps<{
   transaction: Transaction,
 }>();
 
+const isNegative = computed(() => props.transaction.amount < 0);
 // Format date
 const date = computed(() => (
   new Date(props.transaction.date).toUTCString().substring(5,16)
@@ -20,7 +21,7 @@ const amount = computed(() => (
 <template>
   <div class="t-item">
     <div class="t-item-icon">
-      <template v-if="transaction.amount < 0">
+      <template v-if="isNegative">
         <i class="icon-minus-circle"></i>
       </template>
       <template v-else>
@@ -33,7 +34,7 @@ const amount = computed(() => (
         <p class="t-item-title">
           {{ transaction.title }}
         </p>
-        <p :class="['t-item-amount', { 'expenses': transaction.amount < 0}]">
+        <p :class="['t-item-amount', { 'expenses': isNegative}]">
           {{ amount }}
         </p>
       </div>
