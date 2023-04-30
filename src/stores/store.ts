@@ -11,6 +11,7 @@ export const useStore = defineStore('store', () => {
   const transactions = ref<Transactions>({
     '0': { category: '', amount: 0, title: '', date: new Date().toISOString() }
   });
+  const transactionsLength = ref(0);
   const categories = ref<string[]>();
   const name = ref<string>();
   const lastname = ref<string>();
@@ -34,6 +35,7 @@ export const useStore = defineStore('store', () => {
       // Retrieve all transactions from the transactions database object
       txnDb.fetchAll((data: DataSnapshot) => {
         transactions.value = orderByDate(data.val() as Transactions);
+        transactionsLength.value = data.size;
       }, {});
 
     }).catch(error => console.error('error getting wallet', error));
@@ -106,6 +108,7 @@ export const useStore = defineStore('store', () => {
 
   return {
     transactions,
+    transactionsLength,
     categories,
     name,
     lastname,
