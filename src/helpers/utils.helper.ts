@@ -1,13 +1,17 @@
-import type { Transactions } from '@/interfaces/types';
+import type { Transaction, Transactions } from '@/interfaces/types';
 
 export function orderByDate(transactions: Transactions) {
   const sorted = Object.entries(transactions)
     .reverse()
     .sort((a:any, b:any) => new Date(b[1].date).getTime() - new Date(a[1].date).getTime());
 
+  return arrayToTransactions(sorted);
+}
+
+export function arrayToTransactions(array: Array<[string, Transaction]>) {
   const obj: Transactions = {};
 
-  for (const element of sorted) {
+  for (const element of array) {
     obj[element[0]] = element[1];
   }
 
