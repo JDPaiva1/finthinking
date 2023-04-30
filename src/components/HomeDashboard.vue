@@ -48,7 +48,7 @@ const expenses = computed(() => currencyFormatter(store.expenses));
   @apply w-full flex gap-8 justify-between text-white;
 }
 .dashboard-widget {
-  @apply rounded-3xl p-4 w-full flex justify-around content-center items-center;
+  @apply rounded-3xl p-4 w-full justify-around content-center items-center;
 }
 .dashboard-widget-text {
   @apply text-sm font-medium;
