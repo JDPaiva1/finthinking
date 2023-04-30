@@ -4,6 +4,7 @@ import type { Transaction, Transactions } from '@/interfaces/types';
 import useDb from '@/helpers/database.helper';
 import { orderByDate } from '@/helpers/utils.helper';
 import { getCurrentUID } from '@/helpers/auth.helper';
+import type { DataSnapshot } from 'firebase/database';
 
 export const useStore = defineStore('store', () => {
   // State
@@ -31,16 +32,16 @@ export const useStore = defineStore('store', () => {
       // Create a new transactions database object using the wallet key
       txnDb = new useDb(`/wallets/${wallet}/transactions`);
       // Retrieve all transactions from the transactions database object
-      txnDb.fetchAll((data: Transactions) => {
-        transactions.value = orderByDate(data);
+      txnDb.fetchAll((data: DataSnapshot) => {
+        transactions.value = orderByDate(data.val() as Transactions);
       }, {});
 
     }).catch(error => console.error('error getting wallet', error));
 
   const categoriesDb = new useDb('/categories');
 
-  categoriesDb.fetchAll((data: string[]) => {
-    categories.value = data;
+  categoriesDb.fetchAll((data: DataSnapshot) => {
+    categories.value = data.val() as string[];
   }, {});
 
   // Getters

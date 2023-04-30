@@ -24,7 +24,7 @@ export default class useDb {
     const fetchQuery = query(child(this.dbRef, path), limitToLast(limit));
 
     onValue(fetchQuery, (snapshot) => {
-      callback(snapshot.val());
+      callback(snapshot);
     });
   }
 
