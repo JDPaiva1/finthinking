@@ -102,4 +102,7 @@ function updateAmountSign() {
 .t-form-input-wrapper .field-wrapper select {
   @apply h-[38px];
 }
+.t-form input.field-input[type="number"] {
+  @apply text-right;
+}
 </style>
