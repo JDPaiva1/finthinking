@@ -19,7 +19,9 @@ const showHeader = computed(() => route.name == 'edit' || route.name == 'new');
     <h3 class="navbar-title">{{ route.name }}</h3>
   </header>
 
-  <RouterView />
+  <main class="pb-20" :class="{'pb-24': isIos}">
+    <RouterView />
+  </main>
 
   <RouterLink to="/new" class="add-button" v-if="showAddButton">
     <i class="icon-plus"></i>
