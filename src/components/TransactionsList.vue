@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { useStore } from '@/stores/store';
 import { useRouter } from 'vue-router';
 import TransactionItem from '@/components/TransactionItem.vue';
+import type { Transactions } from '@/interfaces/types';
 
-const store = useStore();
+defineProps<{ transactions: Transactions }>();
+
 const router = useRouter();
 
 function gotoEdit(id: string | number) {
@@ -16,7 +17,7 @@ function gotoEdit(id: string | number) {
     <h3 class="transactions-list-title">
       Recent Transaction
     </h3>
-    <template v-for="(transaction, index) in store.transactions" :key="index">
+    <template v-for="(transaction, index) in transactions" :key="index">
       <TransactionItem :transaction="transaction" @click="gotoEdit(index)"/>
     </template>
   </div>
