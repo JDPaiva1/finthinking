@@ -12,21 +12,27 @@ const expenses = computed(() => currencyFormatter(store.expenses));
 
 <template>
   <div class="dashboard">
-    <h2 class="dashboard-balance-title">Account Balance</h2>
+    <h2 class="dashboard-balance-title">
+      {{ $t('accountBalance') }}
+    </h2>
     <h1 class="dashboard-balance">{{ balance }}</h1>
 
     <div class="dashboard-widget-container">
       <div class="dashboard-widget bg-green-800">
         <i class="icon-arrow-trending-up"></i>
         <div class="dashboard-widget-text-wrapper">
-          <p class="dashboard-widget-text">Income</p>
+          <p class="dashboard-widget-text">
+            {{ $t('income') }}
+          </p>
           <p class="dashboard-widget-balance">{{ income }}</p>
         </div>
       </div>
       <div class="dashboard-widget bg-red-800">
         <i class="icon-arrow-trending-down"></i>
         <div class="dashboard-widget-text-wrapper">
-          <p class="dashboard-widget-text">Expenses</p>
+          <p class="dashboard-widget-text">
+            {{ $t('expenses') }}
+          </p>
           <p class="dashboard-widget-balance">{{ expenses }}</p>
         </div>
       </div>

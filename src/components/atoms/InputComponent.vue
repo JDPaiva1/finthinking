@@ -23,7 +23,9 @@ function validate() {
 
 <template>
   <div class="field-wrapper">
-    <label :for="name" class="field-label">{{ label }}</label>
+    <label :for="name" class="field-label">
+      {{ $t(`input.${label.toLocaleLowerCase()}`) }}
+    </label>
 
     <div class="field-input-container">
 

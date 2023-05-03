@@ -31,17 +31,19 @@ function login(event: MouseEvent) {
     <p v-if="showErrorMsg" class="login-error">{{ showErrorMsg }}</p>
 
     <button class="form-btn" @click="$event => login($event)">
-      Sign in
+      {{ $t('login.signin') }}
     </button>
 
     <div class="text-sm text-center pt-3">
-      <RouterLink to="/forgot" class="form-link">Forgot your password?</RouterLink>
+      <RouterLink to="/forgot" class="form-link">
+        {{ $t('login.forgotPassword') }}
+      </RouterLink>
     </div>
 
     <p class="login-link-container">
-      Not a member yet? 
+      {{ $t('login.notMemberYet') }}
       <RouterLink class="form-link" to="/signup">
-        Create a new account
+        {{ $t('login.createAccount') }}
       </RouterLink>
     </p>
   </div>

@@ -15,7 +15,7 @@ function gotoEdit(id: string | number) {
 <template>
   <div class="transactions-list">
     <h3 class="transactions-list-title">
-      Recent Transaction
+      {{ $t('recentTransaction') }}
     </h3>
     <template v-for="(transaction, index) in transactions" :key="index">
       <TransactionItem :transaction="transaction" @click="gotoEdit(index)"/>
