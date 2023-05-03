@@ -38,7 +38,7 @@ function validate() {
         @input="$event => $emit('update:value', ($event.target as HTMLInputElement)?.value)"
       >
         <option v-for="(option, index) in options" :key="index" :value="option">
-          {{ option }}
+          {{ $t(`${option}`) }}
         </option>
       </select>
 
