@@ -33,13 +33,13 @@ function signup() {
     <p v-if="showErrorMsg" class="signup-error">{{ showErrorMsg }}</p>
 
     <button class="form-btn" @click="signup">
-      Sign up
+      {{ $t('login.signup') }}
     </button>
 
     <p class="signup-link-container">
-      Already have an account? 
+      {{ $t('login.alreadyHaveAccount') }}
       <RouterLink class="form-link" to="/login">
-        Sign in
+        {{ $t('login.signin') }}
       </RouterLink>
     </p>
   </div>

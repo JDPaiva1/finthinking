@@ -1,0 +1,38 @@
+{
+  "input": {
+    "email": "Email",
+    "emailExample": "example@example.com",
+    "password": "Password",
+    "title": "Title",
+    "amount": "Amount",
+    "category": "Category",
+    "date": "Date",
+    "name": "Name",
+    "lastname": "Last name"
+  },
+  "nav": {
+    "home": "Home",
+    "graphic": "Graphic",
+    "profile": "Profile",
+    "new": "New",
+    "edit": "Edit"
+  },
+  "login": {
+    "signinHeader": "Sign in to your account",
+    "createAccount": "Create a new account",
+    "forgotPassword": "Forgot your password?",
+    "notMemberYet": "Not a member yet?",
+    "alreadyHaveAccount": "Already have an account?",
+    "signup": "Sign up",
+    "signout": "Sign out",
+    "signin": "Sign in"
+  },
+  "recentTransaction": "Recent Transaction",
+  "lastMonth": "Last month",
+  "accountBalance": "Account Balance",
+  "expenses": "Expenses",
+  "income": "Income",
+  "add": "Add transaction",
+  "update": "Update transaction",
+  "delete": "Delete transaction"
+}

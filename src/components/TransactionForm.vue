@@ -57,10 +57,10 @@ function updateAmountSign() {
   <label for="switch" class="t-form-switch">
     <input name="switch" type="checkbox" class="t-form-switch-input" v-model="isIncome">
     <span class="t-form-switch-span rounded-l-md bg-gray-300" :class="{ 'bg-red-600': !isIncome }" @click="toggle">
-      Expense
+      {{ $t('expenses') }}
     </span>
     <span class="t-form-switch-span rounded-r-md bg-gray-300" :class="{ 'bg-green-600': isIncome }" @click="toggle">
-      Income
+      {{ $t('income') }}
     </span>
   </label>
   <div class="t-form">
@@ -71,10 +71,10 @@ function updateAmountSign() {
       <InputComponent label="Date" type="date" name="date" :max="todayDate" required v-model:value="txnForm.date" />
     </div>
     <button class="form-btn" @click="saveTransaction">
-      {{ isEditForm ? 'Update Transaction' : 'Add Transaction' }}
+      {{ isEditForm ? $t('update') : $t('add') }}
     </button>
     <button v-if="isEditForm" class="form-btn form-btn-error" @click="deleteTransaction">
-      Delete Transaction
+      {{ $t('delete') }}
     </button>
   </div>
 </template>

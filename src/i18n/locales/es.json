@@ -1,0 +1,38 @@
+{
+  "input": {
+    "email": "Correo electrónico",
+    "emailExample": "ejemplo@ejemplo.es",
+    "password": "Contraseña",
+    "title": "Título",
+    "amount": "Cantidad",
+    "category": "Categoría",
+    "date": "Fecha",
+    "name": "Nombre",
+    "lastname": "Apellido"
+  },
+  "nav": {
+    "home": "Inicio",
+    "graphic": "Gráfico",
+    "profile": "Perfil",
+    "new": "Nueva",
+    "edit": "Editar"
+  },
+  "login": {
+    "signinHeader": "Inicie sesión en su cuenta",
+    "createAccount": "Cree una nueva cuenta",
+    "forgotPassword": "¿Olvidó su contraseña?",
+    "notMemberYet": "¿Todavía no es miembro?",
+    "alreadyHaveAccount": "¿Ya tiene una cuenta?",
+    "signup": "Registrarse",
+    "signout": "Cerrar sesión",
+    "signin": "Inicie sesión"
+  },
+  "recentTransaction": "Transacciones recientes",
+  "lastMonth": "El mes pasado",
+  "accountBalance": "Saldo de cuenta",
+  "expenses": "Gastos",
+  "income": "Ingresos",
+  "add": "Agregar transacción",
+  "update": "Actualizar transacción",
+  "delete": "Eliminar transacción"
+}

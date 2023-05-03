@@ -16,7 +16,9 @@ const showHeader = computed(() => route.name == 'edit' || route.name == 'new');
     <RouterLink to="/" class="navbar-link">
       <i class="icon-arrow-left"></i>
     </RouterLink>
-    <h3 class="navbar-title">{{ route.name }}</h3>
+    <h3 class="navbar-title">
+      {{ $t(`nav.${route.name?.toString().toLocaleLowerCase()}`) }}
+    </h3>
   </header>
 
   <main class="pb-20" :class="{'pb-24': isIos}">
@@ -29,15 +31,15 @@ const showHeader = computed(() => route.name == 'edit' || route.name == 'new');
   <nav class="bottom-tab-bar" :class="{'menu-ios': isIos}" v-if="showBottomTabBar">
     <RouterLink to="/">
       <i class="icon-home"></i>
-      Home
+      {{ $t('nav.home') }}
     </RouterLink>
     <RouterLink to="/graphic">
       <i class="icon-chart-pie"></i>
-      Graphic
+      {{ $t('nav.graphic') }}
     </RouterLink>
     <RouterLink to="/profile">
       <i class="icon-user-circle"></i>
-      Profile
+      {{ $t('nav.profile') }}
     </RouterLink>
   </nav>
 </template>
