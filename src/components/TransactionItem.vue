@@ -41,7 +41,7 @@ const amount = computed(() => (
 
       <div class="t-item-text">
         <p class="t-item-category">
-          {{ transaction.category }}
+          {{ $t(`${transaction.category}`) }}
         </p>
         <p class="text-xs">
           {{ date }}
