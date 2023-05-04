@@ -32,5 +32,16 @@
   "income": "Ingresos",
   "add": "Agregar transacción",
   "update": "Actualizar transacción",
-  "delete": "Eliminar transacción"
+  "delete": "Eliminar transacción",
+  "housting": "Renta",
+  "transportation": "Transporte",
+  "food": "Comida",
+  "utilities": "Servicios",
+  "insurance": "Seguro",
+  "healthcare": "Salud",
+  "saving": "Ahorro",
+  "personalSpending": "Gastos personales",
+  "entertainment": "Entretenimiento",
+  "miscellaneous": "Varios",
+  "spending": "Gastos"
 }
