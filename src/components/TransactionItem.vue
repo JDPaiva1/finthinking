@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { currencyFormatter } from '@/helpers/utils.helper';
+import { currencyFormatter, dateFormatter } from '@/helpers/utils.helper';
 import type { Transaction } from '@/interfaces/types';
 import { computed } from 'vue';
 
@@ -9,9 +9,7 @@ const props = defineProps<{
 
 const isNegative = computed(() => props.transaction.amount < 0);
 // Format date
-const date = computed(() => (
-  new Date(props.transaction.date).toUTCString().substring(5,16)
-));
+const date = computed(() => dateFormatter(props.transaction.date));
 // Format amout
 const amount = computed(() => (
   currencyFormatter(Math.abs(props.transaction.amount))
