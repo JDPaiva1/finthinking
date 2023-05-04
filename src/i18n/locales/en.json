@@ -32,5 +32,6 @@
   "income": "Income",
   "add": "Add transaction",
   "update": "Update transaction",
-  "delete": "Delete transaction"
+  "delete": "Delete transaction",
+  "personalSpending": "Personal Spending"
 }
