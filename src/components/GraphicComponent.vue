@@ -1,15 +1,17 @@
 <script setup lang="ts">
+import type { Transactions } from '@/interfaces/types';
 import { useStore } from '@/stores/store';
-import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 
+const props = defineProps<{ transactions?: Transactions }>();
 const store = useStore();
-const { transactions, transactionsLength } = storeToRefs(store);
+const transactions = ref(props.transactions ?? store.transactions);
+const transactionsLength = computed(() => Object.keys(transactions.value).length);
 
 const amounts = computed(() => {
   const amounts = [];
-  for(const transaction of Object.values(transactions.value)) {
-    amounts.push(Number(transaction.amount));
+  for(const txn of Object.values(transactions.value).reverse()) {
+    amounts.push(Number(txn.amount));
   }
   return amounts;
 });

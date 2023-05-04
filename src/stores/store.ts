@@ -2,7 +2,7 @@ import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import type { Transaction, Transactions } from '@/interfaces/types';
 import useDb from '@/helpers/database.helper';
-import { orderByDate } from '@/helpers/utils.helper';
+import { arrayToTransactions, orderByDate } from '@/helpers/utils.helper';
 import { getCurrentUID } from '@/helpers/auth.helper';
 import type { DataSnapshot } from 'firebase/database';
 
@@ -11,7 +11,6 @@ export const useStore = defineStore('store', () => {
   const transactions = ref<Transactions>({
     '0': { category: '', amount: 0, title: '', date: new Date().toISOString() }
   });
-  const transactionsLength = ref(0);
   const categories = ref<string[]>();
   const name = ref<string>();
   const lastname = ref<string>();
@@ -35,7 +34,6 @@ export const useStore = defineStore('store', () => {
       // Retrieve all transactions from the transactions database object
       txnDb.fetchAll((data: DataSnapshot) => {
         transactions.value = orderByDate(data.val() as Transactions);
-        transactionsLength.value = data.size;
       }, {});
 
     }).catch(error => console.error('error getting wallet', error));
@@ -106,9 +104,17 @@ export const useStore = defineStore('store', () => {
     txnDb.delete(`${id}`);
   }
 
+  function getTransactionsByMonth(month: number) {
+    const filteredTransactions = Object.entries(transactions.value).filter(txnArray => {
+      const date = new Date(txnArray[1].date);
+      return date.getMonth() === month;
+    });
+
+    return arrayToTransactions(filteredTransactions);
+  }
+
   return {
     transactions,
-    transactionsLength,
     categories,
     name,
     lastname,
@@ -121,6 +127,7 @@ export const useStore = defineStore('store', () => {
     addTransaction,
     getTransaction,
     editTransaction,
-    deleteTransaction
+    deleteTransaction,
+    getTransactionsByMonth
   };
 });
