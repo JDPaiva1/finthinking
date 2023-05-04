@@ -22,6 +22,14 @@ export function currencyFormatter(amount: number) {
   return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
 }
 
+export function dateFormatter(date: string) {
+  return new Date(date).toLocaleDateString('es-ES', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+}
+
 export function isFieldValid(value: string | number | undefined, type: string):string {
   if(!value || (typeof value !== 'number' && !value.trim())) {
     return 'This field is required';
