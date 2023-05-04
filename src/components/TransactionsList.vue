@@ -3,7 +3,10 @@ import { useRouter } from 'vue-router';
 import TransactionItem from '@/components/TransactionItem.vue';
 import type { Transactions } from '@/interfaces/types';
 
-defineProps<{ transactions: Transactions }>();
+defineProps<{
+  transactions: Transactions,
+  title?: string
+}>();
 
 const router = useRouter();
 
@@ -15,7 +18,7 @@ function gotoEdit(id: string | number) {
 <template>
   <div class="transactions-list">
     <h3 class="transactions-list-title">
-      {{ $t('recentTransaction') }}
+      {{ $t(title ?? 'recentTransaction') }}
     </h3>
     <template v-for="(transaction, index) in transactions" :key="index">
       <TransactionItem :transaction="transaction" @click="gotoEdit(index)"/>
