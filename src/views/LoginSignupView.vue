@@ -23,7 +23,7 @@ onAuthChanged((user: User | null) => {
     <div class="mx-auto w-full max-w-sm">
       <img class="mx-auto h-24 w-auto" src="@/assets/logo.svg" alt="Your Company" />
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
-        {{ isLogin ? $t('login.signinHeader') : $t('login.createAccount') }}
+        {{ isLogin ? $t('signinHeader') : $t('createAccount') }}
       </h2>
     </div>
 
