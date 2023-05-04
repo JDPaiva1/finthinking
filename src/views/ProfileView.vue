@@ -25,7 +25,7 @@ function signOutBtn() {
     </div>
 
     <button class="form-btn" @click="signOutBtn()">
-      {{ $t('login.signout') }}
+      {{ $t('signout') }}
     </button>
   </main>
 </template>
