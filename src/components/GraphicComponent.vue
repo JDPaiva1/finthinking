@@ -42,8 +42,8 @@ const zero = computed(() => {
 <template>
   <div>
     <svg viewBox="0 0 300 200">
-      <line stroke="#c4c4c4" stroke-width="2" x1="0" x2="300" :y1="zero" :y2="zero" />
-      <polyline fill="none" stroke="blue" stroke-width="2" :points="points"/>
+      <line stroke="var(--color-text)" stroke-width="2" x1="0" x2="300" :y1="zero" :y2="zero" />
+      <polyline fill="none" stroke="var(--color-primary)" stroke-width="2" :points="points"/>
     </svg>
   </div>
 </template>

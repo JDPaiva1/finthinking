@@ -16,21 +16,24 @@ a,
 }
 
 .form-btn {
-  @apply flex w-full justify-center rounded-md dark:bg-indigo-500 bg-indigo-600 mt-6 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm;
+  @apply flex w-full justify-center rounded-md bg-vprimary mt-6 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm;
 }
 
 .form-btn:hover {
-  @apply bg-indigo-500 dark:bg-indigo-400;
+  @apply bg-vprimary-hover;
 }
 
 .form-btn:focus-visible {
-  @apply outline outline-2 outline-offset-2 outline-indigo-600;
+  @apply outline outline-2 outline-offset-2 outline-vprimary;
 }
 
 .form-btn-error {
-  @apply bg-vbg-mute text-red-600 hover:bg-red-500 hover:text-white focus-visible:outline-red-600;
+  @apply bg-vbg-mute text-vexpenses hover:bg-vexpenses hover:text-white focus-visible:outline-vexpenses;
 }
 
 .form-link {
-  @apply font-semibold leading-6 dark:text-indigo-400 dark:hover:text-indigo-300 text-indigo-600 hover:text-indigo-500;
+  @apply font-semibold leading-6 text-vprimary;
+}
+.form-link:hover {
+  @apply text-vprimary-hover;
 }

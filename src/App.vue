@@ -49,13 +49,13 @@ const showHeader = computed(() => route.name == 'edit' || route.name == 'new');
   @apply leading-[1.5] max-h-screen h-16 p-4 w-full relative flex justify-center items-center;
 }
 .navbar-link {
-  @apply absolute left-2 top-1/2 -translate-y-1/2 dark:text-indigo-400 text-indigo-600;
+  @apply absolute left-2 top-1/2 -translate-y-1/2 text-vprimary hover:text-vprimary-hover;
 }
 .navbar-title {
   @apply mx-auto capitalize;
 }
 .add-button {
-  @apply fixed bottom-20 right-8 h-14 w-14 rounded-full bg-indigo-600 text-white flex justify-center content-center items-center z-50;
+  @apply fixed bottom-20 right-8 h-14 w-14 rounded-full bg-vprimary hover:bg-vprimary-hover text-white flex justify-center content-center items-center z-50;
 }
 .add-button .icon-plus {
   @apply text-4xl;
@@ -67,10 +67,13 @@ const showHeader = computed(() => route.name == 'edit' || route.name == 'new');
 .bottom-tab-bar i {
   @apply block;
 }
+.bottom-tab-bar a:hover:not(.router-link-exact-active) {
+  @apply text-vprimary-hover;
+}
 .bottom-tab-bar.menu-ios {
   @apply pb-3.5;
 }
 .bottom-tab-bar .router-link-exact-active {
-  @apply text-indigo-600;
+  @apply text-vprimary;
 }
 </style>

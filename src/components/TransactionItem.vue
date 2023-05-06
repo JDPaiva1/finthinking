@@ -54,7 +54,7 @@ const amount = computed(() => (
   @apply mt-2 p-4 rounded-3xl flex gap-3 bg-vbg-soft;
 }
 .t-item-icon {
-  @apply h-14 w-16 bg-gray-500 text-white rounded-2xl flex justify-center items-center;
+  @apply h-14 w-16 bg-gray text-white rounded-2xl flex justify-center items-center;
 }
 .t-item-text-container {
   @apply flex flex-wrap w-full content-between py-1;
@@ -63,10 +63,10 @@ const amount = computed(() => (
   @apply w-full flex flex-wrap justify-between items-center font-medium text-base;
 }
 .t-item-amount {
-  @apply font-semibold text-green-800 text-end;
+  @apply font-semibold text-vincome text-end;
 }
 .t-item-amount.expenses {
-  @apply text-red-800;
+  @apply text-vexpenses;
 }
 .t-item-category {
   @apply text-xs;

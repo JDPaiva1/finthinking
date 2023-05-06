@@ -56,10 +56,10 @@ function updateAmountSign() {
 <template>
   <label for="switch" class="t-form-switch">
     <input name="switch" type="checkbox" class="t-form-switch-input" v-model="isIncome">
-    <span class="t-form-switch-span rounded-l-md bg-gray-300" :class="{ 'bg-red-600': !isIncome }" @click="toggle">
+    <span class="t-form-switch-span rounded-l-md bg-gray" :class="{ 'bg-vexpenses-dark': !isIncome }" @click="toggle">
       {{ $t('expenses') }}
     </span>
-    <span class="t-form-switch-span rounded-r-md bg-gray-300" :class="{ 'bg-green-600': isIncome }" @click="toggle">
+    <span class="t-form-switch-span rounded-r-md bg-gray" :class="{ 'bg-vincome-dark': isIncome }" @click="toggle">
       {{ $t('income') }}
     </span>
   </label>
@@ -85,7 +85,7 @@ function updateAmountSign() {
 }
 
 .t-form-switch {
-  @apply flex w-full items-center p-2 rounded-md cursor-pointer text-black;
+  @apply flex w-full items-center p-2 rounded-md cursor-pointer text-white;
 }
 .t-form-switch-input {
   @apply hidden;

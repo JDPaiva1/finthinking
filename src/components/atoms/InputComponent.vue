@@ -76,17 +76,17 @@ function validate() {
 }
 
 .field-input {
-  @apply block w-full rounded-md border-0 py-1.5 px-3 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-base bg-vbg-mute border-vborder;
+  @apply block w-full rounded-md border-0 py-1.5 px-3 ring-1 ring-inset ring-gray-mute placeholder:text-gray-soft text-base bg-vbg-mute border-vborder;
 }
 
 .field-input:focus {
-  @apply focus:ring-2 focus:ring-inset focus:ring-indigo-600 bg-vbg-soft border-vborder-hover;
+  @apply focus:ring-2 focus:ring-inset focus:ring-vprimary bg-vbg-soft border-vborder-hover;
 }
 
 .error .field-input {
-  @apply ring-red-600;
+  @apply ring-vexpenses;
 }
 .field-error {
-  @apply mt-2 text-sm text-red-600;
+  @apply mt-2 text-sm text-vexpenses;
 }
 </style>

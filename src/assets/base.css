@@ -8,7 +8,21 @@
   --vt-c-black-soft: rgb(31 41 55);
   --vt-c-black-mute: rgb(55 65 81);
 
+  --vt-c-gray: #6b7280;
+  --vt-c-gray-soft: #9ca3af;
+  --vt-c-gray-mute: #d1d5db;
+
   --vt-c-indigo: #2c3e50;
+
+  --vt-c-indigo-400: #818cf8;
+  --vt-c-indigo-500: #6366f1;
+  --vt-c-indigo-600: #433CC2;
+
+  --vt-c-red: #F87171;
+  --vt-c-red-dark: #991b1b;
+
+  --vt-c-green: #23CF62;
+  --vt-c-green-dark: #166534;
 
   --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
   --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
@@ -23,6 +37,15 @@
 
 /* semantic color variables for this project */
 :root {
+  --color-primary: var(--vt-c-indigo-600);
+  --color-primary-hover: var(--vt-c-indigo-500);
+
+  --color-expenses: var(--vt-c-red-dark);
+  --color-expenses-dark: var(--vt-c-red-dark); 
+
+  --color-income: var(--vt-c-green-dark);
+  --color-income-dark: var(--vt-c-green-dark);
+
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
@@ -36,6 +59,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --color-primary: var(--vt-c-indigo-500);
+    --color-primary-hover: var(--vt-c-indigo-400);
+
+    --color-expenses: var(--vt-c-red);
+
+    --color-income: var(--vt-c-green);
+
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
     --color-background-mute: var(--vt-c-black-mute);
