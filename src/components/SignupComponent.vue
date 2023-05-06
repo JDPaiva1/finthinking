@@ -50,9 +50,9 @@ function signup() {
   @apply px-2;
 } */
 .signup-error {
-  @apply mt-2 text-sm text-red-600;
+  @apply mt-2 text-sm text-vexpenses;
 }
 .signup-link-container {
-  @apply mt-10 text-center text-sm text-gray-500;
+  @apply mt-10 text-center text-sm text-gray;
 }
 </style>

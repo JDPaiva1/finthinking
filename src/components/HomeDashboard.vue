@@ -18,7 +18,7 @@ const expenses = computed(() => currencyFormatter(store.expenses));
     <h1 class="dashboard-balance">{{ balance }}</h1>
 
     <div class="dashboard-widget-container">
-      <div class="dashboard-widget bg-green-800">
+      <div class="dashboard-widget bg-vincome-dark">
         <i class="icon-arrow-trending-up"></i>
         <div class="dashboard-widget-text-wrapper">
           <p class="dashboard-widget-text">
@@ -27,7 +27,7 @@ const expenses = computed(() => currencyFormatter(store.expenses));
           <p class="dashboard-widget-balance">{{ income }}</p>
         </div>
       </div>
-      <div class="dashboard-widget bg-red-800">
+      <div class="dashboard-widget bg-vexpenses-dark">
         <i class="icon-arrow-trending-down"></i>
         <div class="dashboard-widget-text-wrapper">
           <p class="dashboard-widget-text">
